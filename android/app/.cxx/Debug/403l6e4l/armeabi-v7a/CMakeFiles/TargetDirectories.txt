@@ -1,0 +1,2 @@
+E:/E-Learning app/e_learning/android/app/.cxx/Debug/403l6e4l/armeabi-v7a/CMakeFiles/edit_cache.dir
+E:/E-Learning app/e_learning/android/app/.cxx/Debug/403l6e4l/armeabi-v7a/CMakeFiles/rebuild_cache.dir

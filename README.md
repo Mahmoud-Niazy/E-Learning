@@ -4,7 +4,6 @@
 
 E-Learning App
 
-About the App
 Welcome to the E-Learning App! Whether you're looking to learn something new or teach others, this app is the perfect place for you. Students can browse, buy, and enjoy courses, while instructors can share their knowledge and earn money. It’s a fun, easy, and interactive way to learn and grow.
 
 Key Features

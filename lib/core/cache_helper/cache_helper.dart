@@ -9,6 +9,7 @@ class CacheHelper {
   }
 
   static String? get token => getData(key: AppKeys.token);
+  static String? get userId => getData(key: AppKeys.userId);
   static bool? get isAr => getData(key: AppKeys.isAr);
 
 

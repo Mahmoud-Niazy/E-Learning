@@ -7,6 +7,7 @@ import 'package:e_learning/core/widgets/custom_text_button.dart';
 import 'package:e_learning/core/widgets/custom_text_form_field.dart';
 import 'package:e_learning/features/course_details/presentation/manager/course_details_cubit/course_details_cubit.dart';
 import 'package:e_learning/features/course_details/presentation/manager/course_details_cubit/course_details_state.dart';
+import 'package:e_learning/features/course_details/presentation/views/widgets/instructor_details.dart';
 import 'package:e_learning/features/enrolled_courses/presentation/manager/enrolled_courses_cubit/enrolled_courses_cubit.dart';
 import 'package:e_learning/features/home/data/models/get_courses_response_model.dart';
 import 'package:e_learning/features/layout/presentation/view/layout_view.dart';
@@ -42,7 +43,7 @@ class CourseDetailsView extends StatelessWidget {
   ];
 
   final bool isViewedByItsInstructor;
-  final bool isSubscribed ;
+  final bool isSubscribed;
 
   CourseDetailsView({
     super.key,
@@ -170,41 +171,48 @@ class CourseDetailsView extends StatelessWidget {
                     '${'number_of_lectures'.tr} : ${course.lecturesCount}',
                     style: AppStyles.style13Grey,
                   ),
+                  const SizedBox(
+                    height: 25,
+                  ),
+                  if (course.instructorDetails != null)
+                    InstructorDetailsItem(
+                      instructor: course.instructorDetails!,
+                      // instructorId: course.instructorId ?? '',
+                    ),
                   SizedBox(
-                    height: 10,
+                    height: 25,
                   ),
-                  if(isSubscribed)
-                  Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'lectures'.tr,
-                            style: AppStyles.style17,
-                          ),
-                          CustomTextButton(
-                            title: "show_all".tr,
-                            onPressed: () async {
-                              navigate(
-                                  context: context,
-                                  screen: CourseLecturesView(
-                                    courseId: course.id ?? '',
-                                    instructor: course.instructorDetails,
-                                  ));
-                              await context
-                                  .read<CourseLecturesCubit>()
-                                  .getCourseLectures(course.id ?? '');
-                            },
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                    ],
-                  ),
-
+                  if (isSubscribed)
+                    Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'lectures'.tr,
+                              style: AppStyles.style17,
+                            ),
+                            CustomTextButton(
+                              title: "show_all".tr,
+                              onPressed: () async {
+                                navigate(
+                                    context: context,
+                                    screen: CourseLecturesView(
+                                      courseId: course.id ?? '',
+                                      instructor: course.instructorDetails,
+                                    ));
+                                await context
+                                    .read<CourseLecturesCubit>()
+                                    .getCourseLectures(course.id ?? '');
+                              },
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                      ],
+                    ),
                   if (!isViewedByItsInstructor)
                     BlocConsumer<CourseDetailsCubit, CourseDetailsStates>(
                       listener: (context, state) async {
@@ -270,12 +278,18 @@ class CourseDetailsView extends StatelessWidget {
                   ),
                   if (!isViewedByItsInstructor)
                     BlocConsumer<CourseDetailsCubit, CourseDetailsStates>(
-                      listener: (context, state) async{
-                        if(state is PayForCourseSuccessState){
-                          navigateAndRemoveUntil(context: context, screen: LayoutView());
-                          showSnackBar(context: context, label: 'course_payed_success'.tr, color: AppConstance.primaryColor);
+                      listener: (context, state) async {
+                        if (state is PayForCourseSuccessState) {
+                          navigateAndRemoveUntil(
+                              context: context, screen: LayoutView());
+                          showSnackBar(
+                              context: context,
+                              label: 'course_payed_success'.tr,
+                              color: AppConstance.primaryColor);
                           await context.read<HomeCubit>().getCourses();
-                          await context.read<EnrolledCoursesCubit>().getEnrolledCourses();
+                          await context
+                              .read<EnrolledCoursesCubit>()
+                              .getEnrolledCourses();
                         }
                       },
                       builder: (context, state) {

@@ -39,6 +39,9 @@ class AuthCubit extends Cubit<AuthStates> {
       await CacheHelper.saveData(
           key: AppKeys.token,
           value: userRegistrationResponseDataModel.accessToken);
+      await CacheHelper.saveData(
+          key: AppKeys.userId,
+          value: userRegistrationResponseDataModel.userId);
       emit(SignInSuccessfullyState());
     } catch (error) {
       if (error is DioException) {
@@ -67,6 +70,9 @@ class AuthCubit extends Cubit<AuthStates> {
       await CacheHelper.saveData(
           key: AppKeys.token,
           value: userRegistrationResponseDataModel.accessToken);
+      await CacheHelper.saveData(
+          key: AppKeys.userId,
+          value: userRegistrationResponseDataModel.userId);
       emit(SignUpSuccessfullyState());
     }
     catch(error){

@@ -1,0 +1,2 @@
+E:/portifolio/E-Learning/android/app/.cxx/Debug/224t6805/x86/CMakeFiles/edit_cache.dir
+E:/portifolio/E-Learning/android/app/.cxx/Debug/224t6805/x86/CMakeFiles/rebuild_cache.dir

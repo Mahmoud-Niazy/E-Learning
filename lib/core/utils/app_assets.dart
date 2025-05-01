@@ -26,4 +26,5 @@ abstract class AppAssets {
   static const String courseImageDefault = 'assets/images/course_image_default.jpg';
   static const String home2 = 'assets/images/home2.png';
   static const String google = 'assets/images/google.png';
+  static const String chat = 'assets/images/chat.png';
 }

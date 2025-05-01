@@ -1,3 +1,4 @@
+import 'package:e_learning/features/chat/presentation/manager/chat_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:e_learning/core/utils/app_dimensions.dart';
 import 'package:e_learning/features/add_lecture_to_course/presentation/manager/add_new_lecture_cubit.dart';
@@ -51,6 +52,7 @@ class ELearningApp extends StatelessWidget {
         BlocProvider(create: (context) => serviceLocator<CourseCouponsCubit>()),
         BlocProvider(create: (context) => serviceLocator<VideoPlayerCubit>()),
         BlocProvider(create: (context) => serviceLocator<LectureDetailsCubit>()),
+        BlocProvider(create: (context) => serviceLocator<ChatCubit>()),
       ],
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,

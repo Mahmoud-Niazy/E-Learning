@@ -13,6 +13,7 @@ import 'package:get/get.dart';
 import '../../../../core/cache_helper/cache_helper.dart';
 import '../../../../core/methods/navigation.dart';
 import '../../../../core/methods/translate.dart';
+import '../../../../core/scocket_io_services/socket_services.dart';
 import '../../../../core/utils/app_dimensions.dart';
 import '../../../layout/presentation/view/layout_view.dart';
 
@@ -108,6 +109,7 @@ class RegisterView extends StatelessWidget {
                               context: context,
                               screen: const LayoutView(),
                             );
+                            SocketService().init();
                           }
                           if (state is SignUpErrorState) {
                             showSnackBar(

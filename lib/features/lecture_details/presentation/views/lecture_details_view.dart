@@ -1,6 +1,7 @@
 import 'package:e_learning/core/utils/app_constance.dart';
 import 'package:e_learning/core/utils/app_dimensions.dart';
 import 'package:e_learning/core/utils/app_styles.dart';
+import 'package:e_learning/features/course_details/presentation/views/widgets/instructor_details.dart';
 import 'package:e_learning/features/home/data/models/get_courses_response_model.dart';
 import 'package:e_learning/features/lecture_details/presentation/views/widgets/add_notes_tab.dart';
 import 'package:e_learning/features/lecture_details/presentation/views/widgets/notes_tab_.dart';
@@ -55,40 +56,9 @@ class LecturesDetailsView extends StatelessWidget {
                     height: screenHeight * .04,
                   ),
                   if (instructor != null)
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'instructor'.tr,
-                          style: AppStyles.style17,
-                        ),
-                        SizedBox(
-                          height: screenHeight * .02,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            if (instructor!.userProfileImage != null &&
-                                instructor!.userProfileImage != '')
-                              Container(
-                                height: screenHeight * .05,
-                                width: screenWidth * .2,
-                                decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                    image: NetworkImage(
-                                      instructor!.userProfileImage!,
-                                    ),
-                                  ),
-                                  shape: BoxShape.circle,
-                                ),
-                              ),
-                            Text(
-                              instructor!.name ?? '',
-                              style: AppStyles.style13,
-                            ),
-                          ],
-                        ),
-                      ],
+                    InstructorDetailsItem(
+                      instructor: instructor!,
+                      // instructorId: lecture.instructorId ?? '',
                     ),
                   SizedBox(
                     height: screenHeight * .04,

@@ -3,8 +3,8 @@ Map<String,String> englishLanguage = {
   "on_boarding_sub_title_1" : "We provide online classes",
   "on_boarding_title_2" : "Learn from home anytime",
   "on_boarding_sub_title_2" : "Booked the lectures for future",
-  "on_boarding_title_3" : "Get your certificate",
-  "on_boarding_sub_title_3" : "Analyse your scores and track your results",
+  "on_boarding_title_3" : "Get discount coupons",
+  "on_boarding_sub_title_3" : "Buy courses at discounted prices",
   "next" : "Next",
   "get_started" : "Get Started",
   "login_now_to_explore_courses" : "Login now to explore courses",
@@ -94,7 +94,8 @@ Map<String,String> englishLanguage = {
   "time" : "Time",
   "note" : "Note",
   "number_of_lectures" : "Number of lectures",
-  "video_time_note" : "Press on icon to get the moment of video to add note"
+  "video_time_note" : "Press on icon to get the moment of video to add note",
+  "chats" : "Chats"
 
 
 };

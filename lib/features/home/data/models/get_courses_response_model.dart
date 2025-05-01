@@ -56,17 +56,21 @@ class CourseResponseModel {
 class CourseInstructorResponse {
   final String? name;
   final String? userProfileImage;
+  final String? instructorId;
 
-  CourseInstructorResponse({this.name, this.userProfileImage});
+  CourseInstructorResponse({this.name, this.userProfileImage,this.instructorId});
 
   factory CourseInstructorResponse.fromJson(Map<String, dynamic> json) {
     return CourseInstructorResponse(
       name: json['name'],
       userProfileImage: json['userProfileImage'],
+      instructorId: json['_id'],
     );
   }
 }
 
+/// {id: 680605dc203cca25af00285e, title: html, description: desc, price: 150, picture: https://res.cloudinary.com/dwpc6ln1q/image/upload/v1745225183/course_pictures/course_picture_6744e3caebed616ee1858995_680605dc203cca25af00285e.jpg, category: programming, rates: [0, 0, 0, 0, 0], rating: 0, lecturesCount: 0, createdAt: 2025-04-21T08:46:29.249Z, overview: https://res.cloudinary.com/dwpc6ln1q/video/upload/v1745225188/course_overviews/course_overview_6744e3caebed616ee1858995_680605dc203cca25af00285e.mp4, overviewPlaybackUrl: , instructorDetails: {userProfileImage: , _id: 6744e3caebed616ee1858995, name: string}, isFav: false}
+// I/flutter ( 9380): {id: 680506681008580004ec4686, title: html, description: desc, price: 150, picture: https://res.cloudinary.com/dwpc6ln1q/image/upload/v1745159784/course_pictures/course_picture_6744e3caebed616ee1858995_680506681008580004ec4686.jpg, category: programming, rates: [0, 0, 0, 0, 0], rating: 0, lecturesCount: 6, createdAt: 2025-04-20T14:36:24.941Z, overview: , overviewPlaybackUrl: , instructorDetails: {userProfileImage: , _id: 6744e3caebed616ee1858995, name: string}, isFav: false}
 
 
 

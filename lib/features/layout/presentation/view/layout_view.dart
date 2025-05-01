@@ -38,6 +38,16 @@ class LayoutView extends StatelessWidget {
               BottomNavigationBarItem(
                 icon: Image(
                   image: AssetImage(
+                    AppAssets.chat,
+                  ),
+                  height: 20,
+                  width: 20,
+                ),
+                label: 'chats'.tr,
+              ),
+              BottomNavigationBarItem(
+                icon: Image(
+                  image: AssetImage(
                     AppAssets.video,
                   ),
                   height: 20,

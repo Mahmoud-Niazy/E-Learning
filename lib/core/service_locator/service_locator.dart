@@ -1,3 +1,4 @@
+import 'package:e_learning/core/scocket_io_services/socket_services.dart';
 import 'package:e_learning/core/widgets/video_player/manager/video_player_cubit/video_player_cubit.dart';
 import 'package:e_learning/features/add_lecture_to_course/presentation/manager/add_new_lecture_cubit.dart';
 import 'package:e_learning/features/add_new_course/data/repos/add_new_course_repo_imp.dart';
@@ -12,6 +13,10 @@ import 'package:e_learning/features/auth/domain/use_cases/send_reset_password_co
 import 'package:e_learning/features/auth/domain/use_cases/sign_in_use_case.dart';
 import 'package:e_learning/features/auth/domain/use_cases/sign_up_use_case.dart';
 import 'package:e_learning/features/auth/presentation/manager/auth_cubit/auth_cubit.dart';
+import 'package:e_learning/features/chat/domain/repos/chat_repo.dart';
+import 'package:e_learning/features/chat/domain/use_cases/get_conversations_use_case.dart';
+import 'package:e_learning/features/chat/domain/use_cases/send_message_use_case.dart';
+import 'package:e_learning/features/chat/presentation/manager/chat_cubit.dart';
 import 'package:e_learning/features/course_coupons/domain/repos/course_coupons_repo.dart';
 import 'package:e_learning/features/course_coupons/domain/use_cases/delete_coupon_use_case.dart';
 import 'package:e_learning/features/course_coupons/domain/use_cases/get_course_coupons_use_case.dart';
@@ -56,6 +61,7 @@ import '../../features/add_lecture_to_course/domain/use_cases/add_new_lecture_us
 import '../../features/add_lecture_to_course/domain/use_cases/update_lecture_use_case.dart';
 import '../../features/add_lecture_to_course/presentation/manager/convert_url_into_xfile_use_case.dart';
 import '../../features/add_new_course/domain/repos/add_new_course_repo.dart';
+import '../../features/chat/data/repos/chat_repo_imp.dart';
 import '../../features/course_coupons/data/repos/course_coupons_repo_imp.dart';
 import '../../features/course_details/data/repos/course_details_repo_imp.dart';
 import '../../features/create_coupon/data/repos/create_coupon_repo_imp.dart';
@@ -84,6 +90,12 @@ class ServiceLocator {
     ///API SERVICE
     serviceLocator.registerLazySingleton<ApiServices>(
           () => ApiServices(),
+    );
+
+
+    /// SOCKET IO
+    serviceLocator.registerLazySingleton<SocketService>(
+          () => SocketService(),
     );
 
     /// REPOS
@@ -128,6 +140,9 @@ class ServiceLocator {
     );
     serviceLocator.registerLazySingleton<LectureDetailsRepo>(
           ()=> LectureDetailsRepoImp(serviceLocator()),
+    );
+    serviceLocator.registerLazySingleton<ChatRepo>(
+          ()=> ChatRepoImp(serviceLocator()),
     );
 
     /// USE CASES
@@ -218,6 +233,12 @@ class ServiceLocator {
     serviceLocator.registerLazySingleton<GetAllNotesUseCase>(
           ()=> GetAllNotesUseCase(serviceLocator()),
     );
+    serviceLocator.registerLazySingleton<SendMessageUseCase>(
+          ()=> SendMessageUseCase(serviceLocator()),
+    );
+    serviceLocator.registerLazySingleton<GetConversationsUseCase>(
+          ()=> GetConversationsUseCase(serviceLocator()),
+    );
 
     /// CUBIT
     serviceLocator.registerFactory<BottomNavigationBarCubit>(
@@ -270,6 +291,9 @@ class ServiceLocator {
     );
     serviceLocator.registerFactory<LectureDetailsCubit>(
           ()=> LectureDetailsCubit(serviceLocator(),serviceLocator(),),
+    );
+    serviceLocator.registerFactory<ChatCubit>(
+          ()=> ChatCubit(serviceLocator(),serviceLocator(),),
     );
   }
 }

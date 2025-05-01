@@ -38,8 +38,8 @@ class _SplashViewState extends State<SplashView> {
       body: Center(
         child: Image.asset(
           AppAssets.logo,
-          width: screenSize.width*.3,
-          height: screenSize.height * .3,
+          width: screenSize.width*.5,
+          height: screenSize.height * .5,
         ),
       ),
     );

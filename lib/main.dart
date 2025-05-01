@@ -6,6 +6,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'core/app_secret_keys/app_secret_keys.dart';
+import 'core/scocket_io_services/socket_services.dart';
 import 'e_learning_app.dart';
 
 void main() async {
@@ -16,6 +17,10 @@ void main() async {
   ServiceLocator.init();
   ApiServices.init();
   await ScreenUtil.ensureScreenSize();
+  print(CacheHelper.token);
+  if(CacheHelper.token != null) {
+    SocketService().init();
+  }
   runApp(const ELearningApp());
 }
 

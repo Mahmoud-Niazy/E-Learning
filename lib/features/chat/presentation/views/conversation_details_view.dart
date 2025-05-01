@@ -1,8 +1,19 @@
+import 'package:e_learning/core/methods/navigation.dart';
 import 'package:e_learning/core/utils/app_assets.dart';
 import 'package:e_learning/core/utils/app_styles.dart';
+import 'package:e_learning/features/chat/presentation/manager/chat_cubit.dart';
+import 'package:e_learning/features/chat/presentation/manager/chat_states.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 
-class ChatScreen extends StatelessWidget {
+import '../../../home/data/models/get_courses_response_model.dart';
+
+class ConversationDetailsView extends StatelessWidget {
+  // final CourseInstructorResponse? instructor;
+  final String instructorId;
+  final String? instructorImage;
+  final String? instructorName;
   final List<Map<String, dynamic>> messages = [
     {"text": "Hello!", "isMe": true},
     {"text": "Hi, how are you?", "isMe": false},
@@ -10,10 +21,17 @@ class ChatScreen extends StatelessWidget {
     {"text": "Great to hear!", "isMe": false},
   ];
 
-   ChatScreen({super.key});
+  ConversationDetailsView({
+    super.key,
+    // required this.instructor,
+    required this.instructorId,
+    required this.instructorImage,
+    required this.instructorName,
+  });
 
   @override
   Widget build(BuildContext context) {
+    var cubit = context.read<ChatCubit>();
     return Scaffold(
       backgroundColor: Colors.grey[100],
       appBar: AppBar(
@@ -22,18 +40,23 @@ class ChatScreen extends StatelessWidget {
         leading: Padding(
           padding: const EdgeInsets.all(8.0),
           child: CircleAvatar(
-            backgroundImage: AssetImage(AppAssets.userImage),
+            backgroundImage: (instructorImage != null &&
+                instructorImage != '') ?
+            NetworkImage(instructorImage!)
+                : AssetImage(AppAssets.userImage),
           ),
-        ),
+        ) ,
         title: Text(
-          'Mr. Whiskers',
+          instructorName ?? 'name'.tr,
           style: AppStyles.style17,
         ),
         centerTitle: true,
         actions: [
           IconButton(
             icon: Icon(Icons.arrow_back_sharp, color: Colors.black),
-            onPressed: () {},
+            onPressed: () {
+              navigatePop(context: context);
+            },
           )
         ],
       ),
@@ -53,9 +76,8 @@ class ChatScreen extends StatelessWidget {
                     margin: EdgeInsets.symmetric(vertical: 4),
                     padding: EdgeInsets.symmetric(vertical: 10, horizontal: 14),
                     decoration: BoxDecoration(
-                      color: message['isMe']
-                          ? Colors.blue[200]
-                          : Colors.grey[300],
+                      color:
+                      message['isMe'] ? Colors.blue[200] : Colors.grey[300],
                       borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(12),
                         topRight: Radius.circular(12),
@@ -99,9 +121,16 @@ class ChatScreen extends StatelessWidget {
                 SizedBox(width: 8),
                 CircleAvatar(
                   backgroundColor: Colors.blue,
-                  child: IconButton(
-                    icon: Icon(Icons.send, color: Colors.white),
-                    onPressed: () {},
+                  child: BlocBuilder<ChatCubit, ChatStates>(
+                    builder: (context, state) {
+                      return IconButton(
+                        icon: Icon(Icons.send, color: Colors.white),
+                        onPressed: () {
+                          print(instructorId);
+                          cubit.sendMessage(to: instructorId ?? '', message: 'Mahmoud Elsolia test');
+                        },
+                      );
+                    },
                   ),
                 )
               ],

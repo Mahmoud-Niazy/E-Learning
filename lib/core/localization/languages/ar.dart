@@ -3,8 +3,8 @@ Map<String, String> arabicLanguage = {
   "on_boarding_sub_title_1": "نحن نقدم دورات تعلمية مميزة",
   "on_boarding_title_2": "تعلم من المنزل في اي وقت",
   "on_boarding_sub_title_2": "احفظ الدورات وابدا في اي وقت",
-  "on_boarding_title_3": "تعلم و احصل علي شهادتك",
-  "on_boarding_sub_title_3": "تابع تقدمك ونتائجك",
+  "on_boarding_title_3": "احصل علي كوبونات خصم للدورات التعليمية",
+  "on_boarding_sub_title_3": "اشتري الدورات التعليمية بأسعار مخفضة",
   "next": "التالي",
   "get_started": "ابدأ الان",
   "login_now_to_explore_courses" : "سجل دخول الان لمتابعة الدورات التعليمية",
@@ -94,6 +94,7 @@ Map<String, String> arabicLanguage = {
   "time" : "الوقت",
   "note" : "الملاحظة",
   "number_of_lectures" : "عدد المحاضرات",
-  "video_time_note" : "من فضلك اضغط علي العلامة لتحديد وقت الملاحظه من الفيديو"
+  "video_time_note" : "من فضلك اضغط علي العلامة لتحديد وقت الملاحظه من الفيديو",
+  "chats" : "المحادثات"
 
 };

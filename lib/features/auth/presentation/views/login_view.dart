@@ -16,6 +16,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import '../../../../core/methods/show_snack_bar.dart';
+import '../../../../core/scocket_io_services/socket_services.dart';
 import '../../../../core/widgets/custom_circular_progress_indicator.dart';
 import '../../../../core/widgets/custom_text_button.dart';
 import '../manager/auth_cubit/auth_states.dart';
@@ -102,6 +103,7 @@ class LoginView extends StatelessWidget {
                             screen: LayoutView(),
                           );
                           clearControllers();
+                          SocketService().init();
                         }
                         if (state is SignInErrorState) {
                           showSnackBar(

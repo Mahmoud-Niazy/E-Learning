@@ -28,7 +28,6 @@ class CoursesList extends StatelessWidget {
         var course = displayedCourses[index];
         return CourseItem(
           onPressed: () {
-            print(course.id);
             context.read<CourseDetailsCubit>().initial();
             navigate(
                 context: context,

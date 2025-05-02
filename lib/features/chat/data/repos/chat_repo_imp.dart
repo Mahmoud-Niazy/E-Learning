@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 import 'package:e_learning/core/scocket_io_services/socket_services.dart';
 import 'package:e_learning/features/chat/domain/repos/chat_repo.dart';
 
@@ -24,12 +23,11 @@ class ChatRepoImp extends ChatRepo{
   }
 
   @override
-  Stream<Map<String,dynamic>> getAllConversations() {
-    final StreamController<Map<String,dynamic>> conversationStreamController = StreamController.broadcast();
+  Stream<List<dynamic>> getAllConversations() {
+    final StreamController<List<dynamic>> conversationStreamController = StreamController.broadcast();
     socket.emit("getConversations", null);
     socket.on("getConversations", (data) {
-      var res = data['conversations'][0];
-      conversationStreamController.add(res);
+      conversationStreamController.add(data['conversations']);
     });
     return conversationStreamController.stream;
   }

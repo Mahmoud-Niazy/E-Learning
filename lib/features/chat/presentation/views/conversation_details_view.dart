@@ -3,7 +3,6 @@ import 'package:e_learning/core/utils/app_assets.dart';
 import 'package:e_learning/core/utils/app_styles.dart';
 import 'package:e_learning/core/widgets/custom_circular_progress_indicator.dart';
 import 'package:e_learning/core/widgets/empty_list_widget.dart';
-import 'package:e_learning/features/chat/data/models/message_model/message_model.dart';
 import 'package:e_learning/features/chat/presentation/manager/chat_cubit.dart';
 import 'package:e_learning/features/chat/presentation/manager/chat_states.dart';
 import 'package:e_learning/features/chat/presentation/views/widgets/message_item.dart';
@@ -62,22 +61,15 @@ class ConversationDetailsView extends StatelessWidget {
                 if (state is GetMessagesLoadingState) {
                   return CustomCircularProgressIndicator();
                 }
-                return StreamBuilder(
-                  stream: cubit.messagesStreamController.stream,
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return CustomCircularProgressIndicator();
-                    } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                      return EmptyListWidget();
-                    }
-                    return ListView.builder(
-                      controller: cubit.scrollController,
-                      padding: EdgeInsets.all(16),
-                      itemCount: snapshot.data!.length,
-                      itemBuilder: (context, index) {
-                        return MessageItem(message: snapshot.data![index]);
-                      },
-                    );
+                if(cubit.messages.isEmpty){
+                  return EmptyListWidget();
+                }
+                return ListView.builder(
+                  controller: cubit.scrollController,
+                  padding: EdgeInsets.all(16),
+                  itemCount: cubit.messages.length,
+                  itemBuilder: (context, index) {
+                    return MessageItem(message: cubit.messages[index]);
                   },
                 );
               },

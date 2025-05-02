@@ -8,11 +8,15 @@ class GetConversationsUseCase {
 
   GetConversationsUseCase(this.chatRepo);
 
-  Stream<ConversationModel> execute() {
-    final StreamController<ConversationModel> conversationStreamController = StreamController.broadcast();
+  Stream<List<ConversationModel>> execute() {
+    final StreamController<List<ConversationModel>> conversationStreamController = StreamController.broadcast();
+    List<ConversationModel> conversations = [];
     var res = chatRepo.getAllConversations();
     res.listen((data) {
-      conversationStreamController.add(ConversationModel.fromJson(data));
+      for(var conversation in data){
+        conversations.add(ConversationModel.fromJson(conversation));
+      }
+      conversationStreamController.add(conversations);
     });
     return conversationStreamController.stream;
   }

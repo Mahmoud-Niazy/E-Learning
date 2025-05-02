@@ -2,5 +2,5 @@
 abstract class ChatRepo {
   void sendMessage(String to , String message);
   Stream<List<dynamic>> getMessagesOfConversation(String instructorId);
-  Stream<Map<String,dynamic>> getAllConversations();
+  Stream<List<dynamic>> getAllConversations();
 }

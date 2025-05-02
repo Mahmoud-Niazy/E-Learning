@@ -1,7 +1,7 @@
 class ConversationModel {
   final String id;
   final List<Participant> participants;
-  final LastMessage lastMessage;
+  final LastMessage? lastMessage;
   final String createdAt;
   final String updatedAt;
 
@@ -19,7 +19,7 @@ class ConversationModel {
       participants: (json['participants'] as List)
           .map((item) => Participant.fromJson(Map<String, dynamic>.from(item)))
           .toList(),
-      lastMessage: LastMessage.fromJson(Map<String, dynamic>.from(json['lastMessage'])),
+      lastMessage: json['lastMessage'] != null? LastMessage.fromJson(Map<String, dynamic>.from(json['lastMessage'])) : null,
       createdAt: json['createdAt'],
       updatedAt: json['updatedAt'],
     );

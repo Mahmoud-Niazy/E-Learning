@@ -55,7 +55,7 @@ class ConversationItem extends StatelessWidget {
   }
 
   String getLastMessage() {
-    String lastMessage = conversation.lastMessage.text;
+    String lastMessage = conversation.lastMessage?.text ?? '';
     return lastMessage;
   }
 

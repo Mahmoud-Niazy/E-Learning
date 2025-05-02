@@ -28,6 +28,8 @@ class ChatCubit extends Cubit<ChatStates> {
   ) : super(ChatInitialState());
 
 
+  TextEditingController chatController = TextEditingController();
+
   void sendMessage({
     required String to,
   }) {
@@ -45,7 +47,7 @@ class ChatCubit extends Cubit<ChatStates> {
       }
     }
   }
-  Stream<ConversationModel>? conversationsStream ;
+  Stream<List<ConversationModel>>? conversationsStream ;
   List<ConversationModel> conversations = [];
 
   void getConversations() async{
@@ -54,7 +56,9 @@ class ChatCubit extends Cubit<ChatStates> {
       conversationsStream = getConversationsUseCase.execute();
       conversationsStream!.listen((data){
         conversations = [];
-        conversations.add(data);
+        for(var conversation in data) {
+          conversations.add(conversation);
+        }
         emit(GetConversationsSuccessState());
       });
     } catch (error) {
@@ -68,24 +72,22 @@ class ChatCubit extends Cubit<ChatStates> {
   }
 
 
-  final StreamController<List<dynamic>> messagesStreamController = StreamController.broadcast();
-  TextEditingController chatController = TextEditingController();
+  Stream<List<MessageModel>>? messagesStreamController;
   List<MessageModel> messages = [];
-  ScrollController scrollController = ScrollController();
-
 
 
   void getMessages(String instructorId) async{
     emit(GetMessagesLoadingState());
     try {
-      socket.emit("getConversationMessages", instructorId);
-      socket.on("getConversationMessages", (data) {
-        for(var message in data){
-          messages.add(MessageModel.fromJson(message));
+
+      messagesStreamController = getMessagesUseCase.execute(instructorId);
+      messagesStreamController!.listen((data){
+        messages = [];
+        for(var message in data) {
+          messages.add(message);
         }
-        messagesStreamController.add(messages);
+        emit(GetConversationsSuccessState());
       });
-      emit(GetMessagesSuccessState());
     } catch (error) {
       if(error is DioException){
         emit(GetMessagesErrorState(ServerFailure.fromDioException(error).error));
@@ -103,6 +105,8 @@ class ChatCubit extends Cubit<ChatStates> {
       emit(GetRealTimeSuccess());
     });
   }
+
+  ScrollController scrollController = ScrollController();
 
   scroll(){
       scrollController.animateTo(

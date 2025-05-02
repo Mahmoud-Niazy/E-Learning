@@ -10,7 +10,6 @@ import 'package:get/get.dart';
 
 
 class AllChatsView extends StatelessWidget {
-
   const AllChatsView({
     super.key,
   });
@@ -29,41 +28,32 @@ class AllChatsView extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: BlocBuilder<ChatCubit, ChatStates>(
-          builder: (context, state) {
+          builder: (context, state)  {
             if (state is GetConversationsLoadingState) {
               return CustomCircularProgressIndicator();
             }
-              return StreamBuilder(
-              stream: cubit.conversations,
-              builder:(context,snapshot){
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Center(child: CircularProgressIndicator());
-                }
-                else if (!snapshot.hasData) {
-                  return EmptyListWidget();
-                }
-                return ListView.separated(
-                  itemBuilder: (context, index) {
-                    return ConversationItem(
-                      conversation: snapshot.data!,
-                    );
-                  },
-                  separatorBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 20,
-                        vertical: 10,
-                      ),
-                      child: Divider(
-                        color: Colors.black12,
-                      ),
-                    );
-                  },
-                  itemCount: cubit.conversationsLength,
+            if(cubit.conversations.isEmpty){
+              return EmptyListWidget();
+            }
+            return ListView.separated(
+              itemBuilder: (context, index) {
+                return ConversationItem(
+                  conversation: cubit.conversations[index],
                 );
-              }
+              },
+              separatorBuilder: (context, index) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 20,
+                    vertical: 10,
+                  ),
+                  child: Divider(
+                    color: Colors.black12,
+                  ),
+                );
+              },
+              itemCount: cubit.conversations.length,
             );
-
           },
         ),
       ),

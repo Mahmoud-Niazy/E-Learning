@@ -52,7 +52,7 @@ class ELearningApp extends StatelessWidget {
         BlocProvider(create: (context) => serviceLocator<CourseCouponsCubit>()),
         BlocProvider(create: (context) => serviceLocator<VideoPlayerCubit>()),
         BlocProvider(create: (context) => serviceLocator<LectureDetailsCubit>()),
-        BlocProvider(create: (context) => serviceLocator<ChatCubit>()),
+        BlocProvider(create: (context) => serviceLocator<ChatCubit>()..receiveRealTimeMessage()),
       ],
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,

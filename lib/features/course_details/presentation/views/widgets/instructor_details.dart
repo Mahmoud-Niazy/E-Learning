@@ -59,7 +59,7 @@ class InstructorDetailsItem extends StatelessWidget {
               ),
             CustomIconButton(
               onPressed: () {
-                SocketService().init();
+                // SocketService().init();
                 navigate(
                     context: context,
                     screen: ConversationDetailsView(

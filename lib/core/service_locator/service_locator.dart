@@ -15,6 +15,7 @@ import 'package:e_learning/features/auth/domain/use_cases/sign_up_use_case.dart'
 import 'package:e_learning/features/auth/presentation/manager/auth_cubit/auth_cubit.dart';
 import 'package:e_learning/features/chat/domain/repos/chat_repo.dart';
 import 'package:e_learning/features/chat/domain/use_cases/get_conversations_use_case.dart';
+import 'package:e_learning/features/chat/domain/use_cases/get_messages_use_case.dart';
 import 'package:e_learning/features/chat/domain/use_cases/send_message_use_case.dart';
 import 'package:e_learning/features/chat/presentation/manager/chat_cubit.dart';
 import 'package:e_learning/features/course_coupons/domain/repos/course_coupons_repo.dart';
@@ -239,6 +240,9 @@ class ServiceLocator {
     serviceLocator.registerLazySingleton<GetConversationsUseCase>(
           ()=> GetConversationsUseCase(serviceLocator()),
     );
+    serviceLocator.registerLazySingleton<GetMessagesUseCase>(
+          ()=> GetMessagesUseCase(serviceLocator()),
+    );
 
     /// CUBIT
     serviceLocator.registerFactory<BottomNavigationBarCubit>(
@@ -293,7 +297,7 @@ class ServiceLocator {
           ()=> LectureDetailsCubit(serviceLocator(),serviceLocator(),),
     );
     serviceLocator.registerFactory<ChatCubit>(
-          ()=> ChatCubit(serviceLocator(),serviceLocator(),),
+          ()=> ChatCubit(serviceLocator(),serviceLocator(),serviceLocator(),serviceLocator()),
     );
   }
 }

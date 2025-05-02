@@ -1,29 +1,24 @@
 import 'package:e_learning/core/methods/navigation.dart';
 import 'package:e_learning/core/utils/app_assets.dart';
 import 'package:e_learning/core/utils/app_styles.dart';
+import 'package:e_learning/core/widgets/custom_circular_progress_indicator.dart';
+import 'package:e_learning/core/widgets/empty_list_widget.dart';
+import 'package:e_learning/features/chat/data/models/message_model/message_model.dart';
 import 'package:e_learning/features/chat/presentation/manager/chat_cubit.dart';
 import 'package:e_learning/features/chat/presentation/manager/chat_states.dart';
+import 'package:e_learning/features/chat/presentation/views/widgets/message_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 
-import '../../../home/data/models/get_courses_response_model.dart';
-
 class ConversationDetailsView extends StatelessWidget {
-  // final CourseInstructorResponse? instructor;
   final String instructorId;
   final String? instructorImage;
   final String? instructorName;
-  final List<Map<String, dynamic>> messages = [
-    {"text": "Hello!", "isMe": true},
-    {"text": "Hi, how are you?", "isMe": false},
-    {"text": "I'm good, thanks! 😸", "isMe": true},
-    {"text": "Great to hear!", "isMe": false},
-  ];
 
-  ConversationDetailsView({
+
+  const ConversationDetailsView({
     super.key,
-    // required this.instructor,
     required this.instructorId,
     required this.instructorImage,
     required this.instructorName,
@@ -40,12 +35,11 @@ class ConversationDetailsView extends StatelessWidget {
         leading: Padding(
           padding: const EdgeInsets.all(8.0),
           child: CircleAvatar(
-            backgroundImage: (instructorImage != null &&
-                instructorImage != '') ?
-            NetworkImage(instructorImage!)
+            backgroundImage: (instructorImage != null && instructorImage != '')
+                ? NetworkImage(instructorImage!)
                 : AssetImage(AppAssets.userImage),
           ),
-        ) ,
+        ),
         title: Text(
           instructorName ?? 'name'.tr,
           style: AppStyles.style17,
@@ -63,37 +57,28 @@ class ConversationDetailsView extends StatelessWidget {
       body: Column(
         children: [
           Expanded(
-            child: ListView.builder(
-              padding: EdgeInsets.all(16),
-              itemCount: messages.length,
-              itemBuilder: (context, index) {
-                final message = messages[index];
-                return Align(
-                  alignment: message['isMe']
-                      ? Alignment.centerRight
-                      : Alignment.centerLeft,
-                  child: Container(
-                    margin: EdgeInsets.symmetric(vertical: 4),
-                    padding: EdgeInsets.symmetric(vertical: 10, horizontal: 14),
-                    decoration: BoxDecoration(
-                      color:
-                      message['isMe'] ? Colors.blue[200] : Colors.grey[300],
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(12),
-                        topRight: Radius.circular(12),
-                        bottomLeft: message['isMe']
-                            ? Radius.circular(12)
-                            : Radius.circular(0),
-                        bottomRight: message['isMe']
-                            ? Radius.circular(0)
-                            : Radius.circular(12),
-                      ),
-                    ),
-                    child: Text(
-                      message['text'],
-                      style: TextStyle(fontSize: 16),
-                    ),
-                  ),
+            child: BlocBuilder<ChatCubit, ChatStates>(
+              builder: (context, state) {
+                if (state is GetMessagesLoadingState) {
+                  return CustomCircularProgressIndicator();
+                }
+                return StreamBuilder(
+                  stream: cubit.messagesStreamController.stream,
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return CustomCircularProgressIndicator();
+                    } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                      return EmptyListWidget();
+                    }
+                    return ListView.builder(
+                      controller: cubit.scrollController,
+                      padding: EdgeInsets.all(16),
+                      itemCount: snapshot.data!.length,
+                      itemBuilder: (context, index) {
+                        return MessageItem(message: snapshot.data![index]);
+                      },
+                    );
+                  },
                 );
               },
             ),
@@ -110,6 +95,7 @@ class ConversationDetailsView extends StatelessWidget {
                       borderRadius: BorderRadius.circular(24),
                     ),
                     child: TextField(
+                      controller: cubit.chatController,
                       decoration: InputDecoration(
                         hintText: "Type a message...",
                         border: InputBorder.none,
@@ -126,8 +112,8 @@ class ConversationDetailsView extends StatelessWidget {
                       return IconButton(
                         icon: Icon(Icons.send, color: Colors.white),
                         onPressed: () {
-                          print(instructorId);
-                          cubit.sendMessage(to: instructorId ?? '', message: 'Mahmoud Elsolia test');
+                          // print(instructorId);
+                          cubit.sendMessage(to: instructorId);
                         },
                       );
                     },

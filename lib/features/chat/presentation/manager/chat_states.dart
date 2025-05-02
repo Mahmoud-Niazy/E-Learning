@@ -15,3 +15,16 @@ class GetConversationsErrorState extends ChatStates{
   final String error;
   GetConversationsErrorState(this.error);
 }
+
+class GetMessagesLoadingState extends ChatStates{}
+class GetMessagesSuccessState extends ChatStates{}
+class GetMessagesErrorState extends ChatStates{
+  final String error;
+  GetMessagesErrorState(this.error);
+}
+
+class GetRealTimeLoading extends ChatStates{}
+class GetRealTimeSuccess extends ChatStates{}
+class GetRealTimeError extends ChatStates{}
+
+class ScrollState extends ChatStates{}

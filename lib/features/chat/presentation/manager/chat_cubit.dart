@@ -59,6 +59,11 @@ class ChatCubit extends Cubit<ChatStates> {
         for(var conversation in data) {
           conversations.add(conversation);
         }
+        conversations.sort((a, b) {
+          final dateA = DateTime.parse(a.createdAt);
+          final dateB = DateTime.parse(b.createdAt);
+          return dateB.compareTo(dateA); // Newest first
+        });
         emit(GetConversationsSuccessState());
       });
     } catch (error) {

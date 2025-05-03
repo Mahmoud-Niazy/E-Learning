@@ -125,6 +125,26 @@ class ConversationItem extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
                 maxLines: 2,
               ),
+              if(
+              conversation.lastMessage?.seen == false
+              &&
+              CacheHelper.userId != conversation.lastMessage?.from
+              )
+              Column(
+                children: [
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Container(
+                    height: 10,
+                    width: 10,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.blue,
+                    ),
+                  ),
+                ],
+              ),
             ],
           ),
         ],

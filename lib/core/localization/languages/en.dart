@@ -95,7 +95,8 @@ Map<String,String> englishLanguage = {
   "note" : "Note",
   "number_of_lectures" : "Number of lectures",
   "video_time_note" : "Press on icon to get the moment of video to add note",
-  "chats" : "Chats"
+  "chats" : "Chats",
+  "type_a_message" : "Type your message ..."
 
 
 };

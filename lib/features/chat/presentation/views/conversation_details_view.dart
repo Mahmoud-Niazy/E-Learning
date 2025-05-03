@@ -89,7 +89,7 @@ class ConversationDetailsView extends StatelessWidget {
                     child: TextField(
                       controller: cubit.chatController,
                       decoration: InputDecoration(
-                        hintText: "Type a message...",
+                        hintText: "type_a_message".tr,
                         border: InputBorder.none,
                         contentPadding: EdgeInsets.symmetric(horizontal: 16),
                       ),

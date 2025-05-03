@@ -45,13 +45,13 @@ class HomeCubit extends Cubit<HomeStates> {
     coursesOfCategories = [];
       allCourses = await getAllCoursesUseCase.execute();
       for (var course in allCourses) {
-        if(course.category == 'programming'.tr){
+        if(course.category == 'Programming' || course.category == 'البرمجة'){
           programmingCourses.add(course);
         }
-        if(course.category == 'science'.tr){
+        if(course.category == 'Science' || course.category == 'العلوم' ){
           scienceCourses.add(course);
         }
-        if(course.category == 'other'.tr){
+        else{
           otherCourses.add(course);
         }
       }

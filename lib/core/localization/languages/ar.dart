@@ -95,6 +95,7 @@ Map<String, String> arabicLanguage = {
   "note" : "الملاحظة",
   "number_of_lectures" : "عدد المحاضرات",
   "video_time_note" : "من فضلك اضغط علي العلامة لتحديد وقت الملاحظه من الفيديو",
-  "chats" : "المحادثات"
+  "chats" : "المحادثات",
+  "type_a_message" : "اكتب رسالتك ..."
 
 };

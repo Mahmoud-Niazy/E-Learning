@@ -2,8 +2,8 @@ class NotificationModel {
   final String? id;
   final String? recipient;
   final String? type;
-  final String? course;
-  final String? lecture;
+  final Course? course;
+  final Lecture? lecture;
   final num? count;
   final bool? seen;
   final String? createdAt;
@@ -26,26 +26,52 @@ class NotificationModel {
       id: json['id'] as String?,
       recipient: json['recipient'] as String?,
       type: json['type'] as String?,
-      course: json['course'] as String?,
-      lecture: json['lecture'] as String?,
+      course: json['course'] != null ? Course.fromJson(json['course']) : null,
+      lecture: json['lecture'] != null ? Lecture.fromJson(json['lecture']) : null,
       count: json['count'] as num?,
       seen: json['seen'] as bool?,
       createdAt: json['createdAt'] as String?,
       updatedAt: json['updatedAt'] as String?,
     );
   }
+}
 
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'recipient': recipient,
-      'type': type,
-      'course': course,
-      'lecture': lecture,
-      'count': count,
-      'seen': seen,
-      'createdAt': createdAt,
-      'updatedAt': updatedAt,
-    };
+class Course {
+  final String? id;
+  final String? title;
+  final String? picture;
+
+  Course({
+    this.id,
+    this.title,
+    this.picture,
+  });
+
+  factory Course.fromJson(Map<String, dynamic> json) {
+    return Course(
+      id: json['_id'] as String?,
+      title: json['title'] as String?,
+      picture: json['picture'] as String?,
+    );
+  }
+}
+
+class Lecture {
+  final String? id;
+  final String? title;
+  final String? thumbnailUrl;
+
+  Lecture({
+    this.id,
+    this.title,
+    this.thumbnailUrl,
+  });
+
+  factory Lecture.fromJson(Map<String, dynamic> json) {
+    return Lecture(
+      id: json['_id'] as String?,
+      title: json['title'] as String?,
+      thumbnailUrl: json['thumbnailUrl'] as String?,
+    );
   }
 }

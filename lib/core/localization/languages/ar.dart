@@ -96,6 +96,13 @@ Map<String, String> arabicLanguage = {
   "number_of_lectures" : "عدد المحاضرات",
   "video_time_note" : "من فضلك اضغط علي العلامة لتحديد وقت الملاحظه من الفيديو",
   "chats" : "المحادثات",
-  "type_a_message" : "اكتب رسالتك ..."
+  "type_a_message" : "اكتب رسالتك ...",
+  "your_course_titled" : "الكورس الخاص بك المسمي ب",
+  "has_been_purchased" : "تم شراءه",
+  "new_lecture_titled" : "محاضرة جديدة بعنوان",
+  "has_been_added" : "تمت اضافتها للكورس الذي قمت بشرائه والذي بعنوان",
+  "new_purchase" : "عملية شراء جديدة",
+  "new_lecture" : "محاضرة جديدة",
+  "notifications" : "الاشعارات"
 
 };

@@ -7,6 +7,7 @@ import 'package:e_learning/features/home/presentation/views/widgets/carousel_sli
 import 'package:e_learning/features/home/presentation/views/widgets/categories_list.dart';
 import 'package:e_learning/features/home/presentation/views/widgets/courses_list.dart';
 import 'package:e_learning/features/home/presentation/views/widgets/home_user_image.dart';
+import 'package:e_learning/features/notifications/presentation/manager/notifications_cubit/notifications_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
@@ -56,6 +57,7 @@ class HomeView extends StatelessWidget {
                                     context: context,
                                     screen: NotificationScreen(),
                                   );
+                                  context.read<NotificationsCubit>().getAllNotifications();
                                 },
                                 child: Stack(
                                   alignment: Alignment.topRight,

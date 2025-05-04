@@ -49,6 +49,9 @@ import 'package:e_learning/features/lecture_details/domain/use_cases/get_all_not
 import 'package:e_learning/features/lecture_details/presentation/manager/lecture_details_cubit/lecture_details_cubit.dart';
 import 'package:e_learning/features/lectures_of_course/domain/use_cases/get_course_lectures_use_case.dart';
 import 'package:e_learning/features/lectures_of_course/presentation/manager/course_lectures_cubit/course_lectures_cubit.dart';
+import 'package:e_learning/features/notifications/domain/repos/notifications_repo.dart';
+import 'package:e_learning/features/notifications/domain/use_cases/get_all_notifications_use_case.dart';
+import 'package:e_learning/features/notifications/presentation/manager/notifications_cubit/notifications_cubit.dart';
 import 'package:e_learning/features/on_boarding/presentation/manager/page_indicator_cubit/page_indicator_cubit.dart';
 import 'package:e_learning/features/search/domain/repos/search_repo.dart';
 import 'package:e_learning/features/search/presentation/manager/search_cubit.dart';
@@ -77,6 +80,7 @@ import '../../features/lecture_details/data/repos/lecture_details_repo_imp.dart'
 import '../../features/lecture_details/domain/repos/lecture_details_repo.dart';
 import '../../features/lectures_of_course/data/repos/course_lectures_repo_imp.dart';
 import '../../features/lectures_of_course/domain/repos/course_lectures_repo.dart';
+import '../../features/notifications/data/repos/notifications_repo_imp.dart';
 import '../../features/search/data/repos/search_repo_imp.dart';
 import '../../features/search/domain/use_cases/get_all_courses_use_case.dart';
 import '../../features/user_uploaded_courses/domain/repos/user_uploaded_courses_repo.dart';
@@ -144,6 +148,9 @@ class ServiceLocator {
     );
     serviceLocator.registerLazySingleton<ChatRepo>(
           ()=> ChatRepoImp(serviceLocator()),
+    );
+    serviceLocator.registerLazySingleton<NotificationsRepo>(
+          ()=> NotificationsRepoImp(serviceLocator()),
     );
 
     /// USE CASES
@@ -243,6 +250,9 @@ class ServiceLocator {
     serviceLocator.registerLazySingleton<GetMessagesUseCase>(
           ()=> GetMessagesUseCase(serviceLocator()),
     );
+    serviceLocator.registerLazySingleton<GetAllNotificationsUseCase>(
+          ()=> GetAllNotificationsUseCase(serviceLocator()),
+    );
 
     /// CUBIT
     serviceLocator.registerFactory<BottomNavigationBarCubit>(
@@ -298,6 +308,9 @@ class ServiceLocator {
     );
     serviceLocator.registerFactory<ChatCubit>(
           ()=> ChatCubit(serviceLocator(),serviceLocator(),serviceLocator(),serviceLocator()),
+    );
+    serviceLocator.registerFactory<NotificationsCubit>(
+          ()=> NotificationsCubit(serviceLocator()),
     );
   }
 }

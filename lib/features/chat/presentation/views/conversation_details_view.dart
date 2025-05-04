@@ -31,26 +31,37 @@ class ConversationDetailsView extends StatelessWidget {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.white,
-        leading: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: CircleAvatar(
-            backgroundImage: (instructorImage != null && instructorImage != '')
-                ? NetworkImage(instructorImage!)
-                : AssetImage(AppAssets.userImage),
-          ),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_sharp, color: Colors.black),
+          onPressed: () {
+            navigatePop(context: context);
+          },
         ),
-        title: Text(
-          instructorName ?? 'name'.tr,
-          style: AppStyles.style17,
-        ),
-        centerTitle: true,
+        // title: Text(
+        //   instructorName ?? 'name'.tr,
+        //   style: AppStyles.style17,
+        // ),
+        // centerTitle: true,
         actions: [
-          IconButton(
-            icon: Icon(Icons.arrow_back_sharp, color: Colors.black),
-            onPressed: () {
-              navigatePop(context: context);
-            },
-          )
+          Row(
+            children: [
+              Text(
+                instructorName ?? 'name'.tr,
+                style: AppStyles.style17,
+              ),
+              SizedBox(
+                width: 15,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: CircleAvatar(
+                  backgroundImage: (instructorImage != null && instructorImage != '')
+                      ? NetworkImage(instructorImage!)
+                      : AssetImage(AppAssets.userImage),
+                ),
+              ),
+            ],
+          ),
         ],
       ),
       body: Column(

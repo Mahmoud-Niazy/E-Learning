@@ -96,7 +96,14 @@ Map<String,String> englishLanguage = {
   "number_of_lectures" : "Number of lectures",
   "video_time_note" : "Press on icon to get the moment of video to add note",
   "chats" : "Chats",
-  "type_a_message" : "Type your message ..."
+  "type_a_message" : "Type your message ...",
+  "your_course_titled" : "Your course titled",
+  "has_been_purchased" : "has been purchased",
+  "new_lecture_titled" : "A new lecture titled",
+  "has_been_added" : "has been added to the course that you purchased, which was titled",
+  "new_purchase" : "New Purchase Process",
+  "new_lecture" : "New Lecture",
+  "notifications" : "Notifications"
 
 
 };

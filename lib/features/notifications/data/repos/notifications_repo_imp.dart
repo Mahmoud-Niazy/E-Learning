@@ -11,10 +11,9 @@ class NotificationsRepoImp extends NotificationsRepo {
   @override
   Future<List<Map<String,dynamic>>> getAllNotifications() async {
     var res = await apiServices.getData(
-      path: 'notifications',
+      path: '/notifications',
       token: CacheHelper.token,
     );
-
     return res['notifications'].cast<Map<String,dynamic>>();
   }
 }

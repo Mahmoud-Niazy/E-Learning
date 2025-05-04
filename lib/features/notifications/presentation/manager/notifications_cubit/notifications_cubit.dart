@@ -19,6 +19,11 @@ class NotificationsCubit extends Cubit<NotificationsStates> {
     emit(GetAllNotificationsLoadingState());
     try{
       notifications = await getAllNotificationsUseCase.execute();
+      notifications.sort((a, b) {
+        final dateA = DateTime.parse(a.createdAt!);
+        final dateB = DateTime.parse(b.createdAt!);
+        return dateB.compareTo(dateA); // Newest first
+      });
       emit(GetAllNotificationsSuccessState());
     }
     catch(error){

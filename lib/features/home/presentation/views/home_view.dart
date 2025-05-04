@@ -8,6 +8,7 @@ import 'package:e_learning/features/home/presentation/views/widgets/categories_l
 import 'package:e_learning/features/home/presentation/views/widgets/courses_list.dart';
 import 'package:e_learning/features/home/presentation/views/widgets/home_user_image.dart';
 import 'package:e_learning/features/notifications/presentation/manager/notifications_cubit/notifications_cubit.dart';
+import 'package:e_learning/features/notifications/presentation/manager/notifications_cubit/notifications_states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
@@ -57,32 +58,39 @@ class HomeView extends StatelessWidget {
                                     context: context,
                                     screen: NotificationScreen(),
                                   );
-                                  context.read<NotificationsCubit>().getAllNotifications();
+                                  context.read<NotificationsCubit>()
+                                      .getAllNotifications();
                                 },
-                                child: Stack(
-                                  alignment: Alignment.topRight,
-                                  children: [
-                                    Icon(
-                                      Icons.notifications_none,
-                                      color: Colors.black38,
-                                      size: 25,
-                                    ),
-                                    Container(
-                                      padding: EdgeInsets.all(5),
-                                      decoration: BoxDecoration(
-                                        color: Colors.redAccent,
-                                        shape: BoxShape.circle,
-                                      ),
-                                      child: Text(
-                                        '1',
-                                        overflow: TextOverflow.ellipsis,
-                                        style: AppStyles.style11.copyWith(
-                                          fontSize: 8,
-                                          color: Colors.white,
+                                child: BlocBuilder<NotificationsCubit, NotificationsStates>(
+                                  builder: (context, state) {
+                                    return Stack(
+                                      alignment: Alignment.topRight,
+                                      children: [
+                                        Icon(
+                                          Icons.notifications_none,
+                                          color: Colors.black38,
+                                          size: 25,
                                         ),
-                                      ),
-                                    ),
-                                  ],
+                                        if(state is GetAllNotificationsSuccessState)
+                                        if(context.read<NotificationsCubit>().notifications.isNotEmpty)
+                                        Container(
+                                          padding: EdgeInsets.all(5),
+                                          decoration: BoxDecoration(
+                                            color: Colors.redAccent,
+                                            shape: BoxShape.circle,
+                                          ),
+                                          child: Text(
+                                            '${context.read<NotificationsCubit>().notifications.where((n) => n.seen == false).toList().length}',
+                                            overflow: TextOverflow.ellipsis,
+                                            style: AppStyles.style11.copyWith(
+                                              fontSize: 8,
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    );
+                                  },
                                 ),
                               ),
                               SizedBox(

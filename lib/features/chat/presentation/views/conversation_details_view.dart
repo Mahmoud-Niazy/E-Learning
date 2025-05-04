@@ -37,11 +37,6 @@ class ConversationDetailsView extends StatelessWidget {
             navigatePop(context: context);
           },
         ),
-        // title: Text(
-        //   instructorName ?? 'name'.tr,
-        //   style: AppStyles.style17,
-        // ),
-        // centerTitle: true,
         actions: [
           Row(
             children: [

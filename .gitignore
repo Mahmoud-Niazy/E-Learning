@@ -44,3 +44,4 @@ app.*.map.json
 
 #Importatnt keys
 .env
+android/app/google-services.json

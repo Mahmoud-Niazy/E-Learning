@@ -51,6 +51,8 @@ import 'package:e_learning/features/lectures_of_course/domain/use_cases/get_cour
 import 'package:e_learning/features/lectures_of_course/presentation/manager/course_lectures_cubit/course_lectures_cubit.dart';
 import 'package:e_learning/features/notifications/domain/repos/notifications_repo.dart';
 import 'package:e_learning/features/notifications/domain/use_cases/get_all_notifications_use_case.dart';
+import 'package:e_learning/features/notifications/domain/use_cases/make_all_notifications_as_seen_use_case.dart';
+import 'package:e_learning/features/notifications/domain/use_cases/make_notification_as_seen_use_case.dart';
 import 'package:e_learning/features/notifications/presentation/manager/notifications_cubit/notifications_cubit.dart';
 import 'package:e_learning/features/on_boarding/presentation/manager/page_indicator_cubit/page_indicator_cubit.dart';
 import 'package:e_learning/features/search/domain/repos/search_repo.dart';
@@ -253,6 +255,12 @@ class ServiceLocator {
     serviceLocator.registerLazySingleton<GetAllNotificationsUseCase>(
           ()=> GetAllNotificationsUseCase(serviceLocator()),
     );
+    serviceLocator.registerLazySingleton<MakeAllNotificationsAsSeenUseCase>(
+          ()=> MakeAllNotificationsAsSeenUseCase(serviceLocator()),
+    );
+    serviceLocator.registerLazySingleton<MakeNotificationAsSeenUseCase>(
+          ()=> MakeNotificationAsSeenUseCase(serviceLocator()),
+    );
 
     /// CUBIT
     serviceLocator.registerFactory<BottomNavigationBarCubit>(
@@ -310,7 +318,7 @@ class ServiceLocator {
           ()=> ChatCubit(serviceLocator(),serviceLocator(),serviceLocator(),serviceLocator()),
     );
     serviceLocator.registerFactory<NotificationsCubit>(
-          ()=> NotificationsCubit(serviceLocator()),
+          ()=> NotificationsCubit(serviceLocator(),serviceLocator(),serviceLocator(),serviceLocator()),
     );
   }
 }

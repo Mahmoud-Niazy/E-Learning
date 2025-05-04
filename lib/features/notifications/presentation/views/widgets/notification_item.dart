@@ -68,11 +68,25 @@ class NotificationItem extends StatelessWidget {
             SizedBox(
               height: 7,
             ),
-            Text(
-              formatDateWithTime(notification.createdAt!),
-              style: AppStyles.style11.copyWith(
-                color: Colors.grey,
-              ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  formatDateWithTime(notification.createdAt!),
+                  style: AppStyles.style11.copyWith(
+                    color: Colors.grey,
+                  ),
+                ),
+                if(notification.seen == false)
+                Container(
+                  height: 10,
+                  width: 10,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.blue,
+                  ),
+                ),
+              ],
             ),
           ],
         ),

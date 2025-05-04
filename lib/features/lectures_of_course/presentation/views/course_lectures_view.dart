@@ -41,9 +41,14 @@ class CourseLecturesView extends StatelessWidget {
             builder: (context, state) {
               return Stack(
                 children: [
-                  LecturesList(
-                    instructor: instructor,
-                    courseId: courseId,
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 20
+                    ),
+                    child: LecturesList(
+                      instructor: instructor,
+                      courseId: courseId,
+                    ),
                   ),
                   if (state is PrepareLectureDataLoadingState)
                     CustomCircularProgressIndicator(),

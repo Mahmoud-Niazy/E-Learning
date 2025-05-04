@@ -60,6 +60,8 @@ class HomeView extends StatelessWidget {
                                   );
                                   context.read<NotificationsCubit>()
                                       .getAllNotifications();
+                                  context.read<NotificationsCubit>()
+                                      .makeAllNotificationsSeen();
                                 },
                                 child: BlocBuilder<NotificationsCubit, NotificationsStates>(
                                   builder: (context, state) {
@@ -73,7 +75,8 @@ class HomeView extends StatelessWidget {
                                         ),
                                         if(state is GetAllNotificationsSuccessState)
                                         if(context.read<NotificationsCubit>().notifications.isNotEmpty)
-                                        Container(
+                                        if(context.read<NotificationsCubit>().notifications.where((n)=> n.seen == false ).toList().isNotEmpty )
+                                            Container(
                                           padding: EdgeInsets.all(5),
                                           decoration: BoxDecoration(
                                             color: Colors.redAccent,

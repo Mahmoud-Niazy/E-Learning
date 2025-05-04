@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import '../../../../core/utils/app_styles.dart';
+import '../../../lectures_of_course/presentation/manager/course_lectures_cubit/course_lectures_cubit.dart';
 
 class EnrolledCoursesView extends StatelessWidget {
   const EnrolledCoursesView({super.key});
@@ -36,7 +37,7 @@ class EnrolledCoursesView extends StatelessWidget {
               var course = cubit.enrolledCourses[index];
               return CourseItem(
                 course: course,
-                onPressed: () {
+                onPressed: () async{
                   navigate(
                       context: context,
                       screen: CourseLecturesView(
@@ -44,6 +45,9 @@ class EnrolledCoursesView extends StatelessWidget {
                         instructor: course.instructorDetails,
                       ),
                   );
+                  await context
+                      .read<CourseLecturesCubit>()
+                      .getCourseLectures(course.id ?? '');
                 },
               );
             },

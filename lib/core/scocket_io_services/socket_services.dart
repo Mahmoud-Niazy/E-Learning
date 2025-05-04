@@ -1,73 +1,102 @@
+import 'dart:developer';
 import 'package:e_learning/core/cache_helper/cache_helper.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:socket_io_client/socket_io_client.dart' as IO;
+import 'package:socket_io_client/socket_io_client.dart' as io;
+
+enum SocketType { chat, notifications }
 
 class SocketService {
-  // Singleton setup
   static final SocketService _instance = SocketService._internal();
+
   factory SocketService() => _instance;
+
   SocketService._internal();
 
-  late IO.Socket _socket;
+  late io.Socket chatSocket;
+  late io.Socket notificationsSocket;
 
-  // Change this to your actual server URL
-  final String _serverUrl = '${dotenv.env['API_BASE_URL']}/chat';
+  static String baseUrl = '${dotenv.env['API_BASE_URL']}';
 
-  /// Initialize and connect to the Socket.IO server
+  final chatSocketUrl = '$baseUrl/chat';
+  final notificationsSocketUrl = '$baseUrl/notification';
+
   void init() {
-    _socket = IO.io(
-      _serverUrl,
-      IO.OptionBuilder()
+    chatSocket = io.io(
+      chatSocketUrl,
+      io.OptionBuilder()
           .setTransports(['websocket']) // required for Flutter
-          .setExtraHeaders({'authorization': 'Bearer ${CacheHelper.token}'}) // <-- pass token here
+          .setExtraHeaders({
+            'authorization': 'Bearer ${CacheHelper.token}'
+          }) // <-- pass token here
+          .disableAutoConnect()
+          .build(),
+    );
+    notificationsSocket = io.io(
+      notificationsSocketUrl,
+      io.OptionBuilder()
+          .setTransports(['websocket']) // required for Flutter
+          .setExtraHeaders({
+            'authorization': 'Bearer ${CacheHelper.token}'
+          }) // <-- pass token here
           .disableAutoConnect()
           .build(),
     );
 
-    _socket.connect();
-
-    _socket.onConnect((_) {
-      print('✅ Connected to $_serverUrl');
+    chatSocket.connect();
+    notificationsSocket.connect();
+    chatSocket.onConnect((_) {
+      log('✅ Connected to Chat Socket');
     });
-
-    _socket.onDisconnect((_) {
-      print('❌ Disconnected from $_serverUrl');
+    notificationsSocket.onConnect((_) {
+      log('✅ Connected to Notifications Socket');
     });
-
-    _socket.onError((data) {
-      print('⚠️ Socket Error: $data');
-    });
-
-    _socket.onReconnect((_) => print('🔄 Reconnecting...'));
-    _socket.onReconnectError((data) => print('❌ Reconnect error: $data'));
-    _socket.onReconnectAttempt((data) => print('🔁 Reconnect attempt: $data'));
+    //
+    // chatSocket.onDisconnect((_) {
+    //   print('❌ Disconnected from $baseUrl');
+    // });
+    //
+    // chatSocket.onError((data) {
+    //   print('⚠️ Socket Error: $data');
+    // });
+    //
+    // chatSocket.onReconnect((_) => print('🔄 Reconnecting...'));
+    // chatSocket.onReconnectError((data) => print('❌ Reconnect error: $data'));
+    // chatSocket.onReconnectAttempt((data) => print('🔁 Reconnect attempt: $data'));
   }
 
-  /// Emit a custom event with data
-  void emit(String event, dynamic data) {
-    _socket.emit(event, data);
+  void emit(String event, dynamic data, [SocketType type = SocketType.chat]) {
+    if (type == SocketType.notifications) {
+      notificationsSocket.emit(event, data);
+    }
+    chatSocket.emit(event, data);
   }
 
-  /// Listen to an event
-  void on(String event, Function(dynamic) handler) {
-    _socket.on(event, handler);
+  void on(String event, Function(dynamic) handler,
+      [SocketType type = SocketType.chat]) {
+    if (type == SocketType.notifications) {
+      notificationsSocket.on(event, handler);
+    }
+    chatSocket.on(event, handler);
   }
 
-  // /// Remove a specific event listener
-  // void off(String event, [Function? handler]) {
-  //   _socket.off(event, handler);
-  // }
-
-  /// Disconnect the socket
-  void disconnect() {
-    _socket.disconnect();
+  void disconnect([SocketType type = SocketType.chat]) {
+    if (type == SocketType.notifications) {
+      notificationsSocket.disconnect();
+    }
+    chatSocket.disconnect();
   }
 
-  /// Reconnect the socket
-  void reconnect() {
-    _socket.connect();
+  void reconnect([SocketType type = SocketType.chat]) {
+    if (type == SocketType.notifications) {
+      notificationsSocket.connect();
+    }
+    chatSocket.connect();
   }
 
-  /// Check if socket is connected
-  bool get isConnected => _socket.connected;
+  bool getStatus([SocketType type = SocketType.chat]) {
+    if (type == SocketType.notifications) {
+      return notificationsSocket.connected;
+    }
+    return chatSocket.connected;
+  }
 }

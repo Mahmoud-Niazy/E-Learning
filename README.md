@@ -2,6 +2,10 @@
   <img src="assets/images/mainLogo.png" alt="App Logo" width="100">
 </p>
 
+<p align="center">
+  <a href="assets/presentation.mp4">Watch Demo Video</a>
+</p>
+
 App Features
 
 For Students:

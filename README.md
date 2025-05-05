@@ -1,9 +1,5 @@
 <p align="center">
-  <img src="assets/images/mainLogo.png" alt="App Logo" width="100">
-</p>
-
-<p align="center">
-  <a href="assets/presentation.mp4" target="_blank">🎬 Watch Demo Video</a>
+  <img src="assets/images/mainLogo.png" alt="App Logo" width="200">
 </p>
 
 App Features

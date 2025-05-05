@@ -44,7 +44,7 @@ class AllChatsView extends StatelessWidget {
               separatorBuilder: (context, index) {
                 return Padding(
                   padding: const EdgeInsets.symmetric(
-                    horizontal: 20,
+                    horizontal: 30,
                     vertical: 10,
                   ),
                   child: Divider(

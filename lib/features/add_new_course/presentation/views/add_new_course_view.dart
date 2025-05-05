@@ -97,7 +97,7 @@ class AddNewCourseView extends StatelessWidget {
       ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
+          padding: const EdgeInsets.only(top: 20, left: 30, right: 30),
           child: SingleChildScrollView(
             child: Form(
               key: formKey,

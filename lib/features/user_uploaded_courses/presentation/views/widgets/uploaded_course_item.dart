@@ -159,7 +159,8 @@ class UploadedCourseItem extends StatelessWidget {
                         screen: CourseDetailsView(
                           isSubscribed: true,
                           course: course,
-                          isViewedByItsInstructor: true,
+                          couponsAndBuyButtonsAreHidden: true,
+                          isReviewedByInstructor: true,
                         ));
                   },
                   icon: Icons.info,

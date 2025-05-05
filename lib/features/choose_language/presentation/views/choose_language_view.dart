@@ -18,7 +18,10 @@ class ChooseLanguageView extends StatelessWidget {
         centerTitle: true,
       ),
       body: Padding(
-        padding: const EdgeInsets.all(20),
+        padding: const EdgeInsets.symmetric(
+          vertical: 20,
+          horizontal: 30
+        ),
         child: LanguagesList(),
       ),
     );

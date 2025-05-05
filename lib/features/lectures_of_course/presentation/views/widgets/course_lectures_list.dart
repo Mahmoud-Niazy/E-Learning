@@ -9,11 +9,13 @@ import 'course_lecture_item.dart';
 class LecturesList extends StatelessWidget {
   final String courseId;
   final CourseInstructorResponse? instructor;
+  final bool isViewedByInstructor ;
 
   const LecturesList({
     super.key,
     required this.instructor,
     required this.courseId,
+    required this.isViewedByInstructor,
   });
 
   @override
@@ -27,6 +29,7 @@ class LecturesList extends StatelessWidget {
           index: index + 1,
           instructor: instructor,
           lecture: lecture,
+          isViewedByInstructor: isViewedByInstructor,
         );
       },
       separatorBuilder: (context, index) {

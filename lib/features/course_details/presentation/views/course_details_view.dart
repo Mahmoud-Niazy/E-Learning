@@ -42,14 +42,16 @@ class CourseDetailsView extends StatelessWidget {
     ),
   ];
 
-  final bool isViewedByItsInstructor;
+  final bool couponsAndBuyButtonsAreHidden;
   final bool isSubscribed;
+  final bool isReviewedByInstructor;
 
   CourseDetailsView({
     super.key,
     required this.course,
     required this.isSubscribed,
-    this.isViewedByItsInstructor = false,
+    this.couponsAndBuyButtonsAreHidden = false,
+    required this.isReviewedByInstructor,
   });
 
   @override
@@ -78,9 +80,9 @@ class CourseDetailsView extends StatelessWidget {
           SliverToBoxAdapter(
             child: Padding(
               padding: const EdgeInsets.only(
-                right: 20,
+                right: 28,
                 bottom: 50,
-                left: 20,
+                left: 28,
                 top: 20,
               ),
               child: Column(
@@ -179,6 +181,7 @@ class CourseDetailsView extends StatelessWidget {
                   const SizedBox(
                     height: 25,
                   ),
+                  if(!isReviewedByInstructor)
                   if (course.instructorDetails != null)
                     InstructorDetailsItem(
                       instructor: course.instructorDetails!,
@@ -205,6 +208,7 @@ class CourseDetailsView extends StatelessWidget {
                                     screen: CourseLecturesView(
                                       courseId: course.id ?? '',
                                       instructor: course.instructorDetails,
+                                      isViewedByInstructor: isReviewedByInstructor,
                                     ));
                                 await context
                                     .read<CourseLecturesCubit>()
@@ -218,7 +222,7 @@ class CourseDetailsView extends StatelessWidget {
                         ),
                       ],
                     ),
-                  if (!isViewedByItsInstructor)
+                  if (!couponsAndBuyButtonsAreHidden)
                     BlocConsumer<CourseDetailsCubit, CourseDetailsStates>(
                       listener: (context, state) async {
                         if (state is GetCouponDataErrorState) {
@@ -281,7 +285,7 @@ class CourseDetailsView extends StatelessWidget {
                   SizedBox(
                     height: 30,
                   ),
-                  if (!isViewedByItsInstructor)
+                  if (!couponsAndBuyButtonsAreHidden)
                     BlocConsumer<CourseDetailsCubit, CourseDetailsStates>(
                       listener: (context, state) async {
                         if (state is PayForCourseSuccessState) {

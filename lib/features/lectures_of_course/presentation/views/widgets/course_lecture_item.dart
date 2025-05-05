@@ -17,6 +17,7 @@ class LectureItem extends StatelessWidget {
   final CourseInstructorResponse? instructor;
   final LectureResponseModel lecture;
   final int index;
+  final bool isViewedByInstructor ;
 
   const LectureItem({
     super.key,
@@ -24,6 +25,7 @@ class LectureItem extends StatelessWidget {
     required this.instructor,
     required this.lecture,
     required this.index,
+    required this.isViewedByInstructor
   });
 
   @override
@@ -80,6 +82,7 @@ class LectureItem extends StatelessWidget {
                 ],
               ),
             ),
+            if(isViewedByInstructor)
             CustomIconButton(
               onPressed: () async {
                 await context

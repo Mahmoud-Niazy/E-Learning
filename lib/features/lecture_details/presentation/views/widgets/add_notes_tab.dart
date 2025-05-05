@@ -97,7 +97,7 @@ class AddNotesTab extends StatelessWidget {
                 controller: cubit.noteController,
               ),
               SizedBox(
-                height: 10,
+                height: 30,
               ),
               BlocConsumer<LectureDetailsCubit, LectureDetailsStates>(
                 listener: (context, state) async {

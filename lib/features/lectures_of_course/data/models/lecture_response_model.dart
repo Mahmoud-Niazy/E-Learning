@@ -7,8 +7,8 @@ class LectureResponseModel {
   final String? courseId;
   final num? lectureNumber;
   final String? instructorId;
-  final List<num>? rates;
-  final num? rating;
+  // final List<num>? rates;
+  // final num? rating;
   final String? createdAt;
   final num? duration;
 
@@ -21,8 +21,8 @@ class LectureResponseModel {
     required this.courseId,
     required this.lectureNumber,
     required this.instructorId,
-    required this.rates,
-    required this.rating,
+    // required this.rates,
+    // required this.rating,
     required this.createdAt,
     required this.duration,
   });
@@ -37,8 +37,8 @@ class LectureResponseModel {
       courseId: json['courseId'],
       lectureNumber: json['lectureNumber'],
       instructorId: json['instructorId'],
-      rates: List<num>.from(json['rates']),
-      rating: json['rating'],
+      // rates: List<num>.from(json['rates']),
+      // rating: json['rating'],
       createdAt: json['createdAt'],
       duration: json['duration'] != null ? num.parse((json['duration'] / 60).toString()).round() : null,
     );
@@ -54,8 +54,8 @@ class LectureResponseModel {
       'courseId': courseId,
       'lectureNumber': lectureNumber,
       'instructorId': instructorId,
-      'rates': rates,
-      'rating': rating,
+      // 'rates': rates,
+      // 'rating': rating,
       'createdAt': createdAt,
       'duration': duration,
     };

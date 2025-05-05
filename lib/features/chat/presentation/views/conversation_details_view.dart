@@ -31,31 +31,41 @@ class ConversationDetailsView extends StatelessWidget {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.white,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back_sharp, color: Colors.black),
-          onPressed: () {
-            navigatePop(context: context);
-          },
+        leading: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 20
+          ),
+          child: IconButton(
+            icon: Icon(Icons.arrow_back_sharp, color: Colors.black),
+            onPressed: () {
+              navigatePop(context: context);
+            },
+          ),
         ),
         actions: [
-          Row(
-            children: [
-              Text(
-                instructorName ?? 'name'.tr,
-                style: AppStyles.style17,
-              ),
-              SizedBox(
-                width: 15,
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: CircleAvatar(
-                  backgroundImage: (instructorImage != null && instructorImage != '')
-                      ? NetworkImage(instructorImage!)
-                      : AssetImage(AppAssets.userImage),
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 28
+            ),
+            child: Row(
+              children: [
+                Text(
+                  instructorName ?? 'name'.tr,
+                  style: AppStyles.style17,
                 ),
-              ),
-            ],
+                SizedBox(
+                  width: 15,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: CircleAvatar(
+                    backgroundImage: (instructorImage != null && instructorImage != '')
+                        ? NetworkImage(instructorImage!)
+                        : AssetImage(AppAssets.userImage),
+                  ),
+                ),
+              ],
+            ),
           ),
         ],
       ),
@@ -70,19 +80,22 @@ class ConversationDetailsView extends StatelessWidget {
                 if(cubit.messages.isEmpty){
                   return EmptyListWidget();
                 }
-                return ListView.builder(
-                  controller: cubit.scrollController,
-                  padding: EdgeInsets.all(16),
-                  itemCount: cubit.messages.length,
-                  itemBuilder: (context, index) {
-                    return MessageItem(message: cubit.messages[index]);
-                  },
+                return Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: ListView.builder(
+                    controller: cubit.scrollController,
+                    padding: EdgeInsets.all(16),
+                    itemCount: cubit.messages.length,
+                    itemBuilder: (context, index) {
+                      return MessageItem(message: cubit.messages[index]);
+                    },
+                  ),
                 );
               },
             ),
           ),
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+            padding: EdgeInsets.symmetric(horizontal: 28, vertical: 8),
             color: Colors.white,
             child: Row(
               children: [

@@ -13,11 +13,13 @@ import '../../../home/data/models/get_courses_response_model.dart';
 class CourseLecturesView extends StatelessWidget {
   final String courseId;
   final CourseInstructorResponse? instructor;
+  final bool isViewedByInstructor ;
 
   const CourseLecturesView({
     super.key,
     required this.courseId,
     required this.instructor,
+    this.isViewedByInstructor = false
   });
 
   @override
@@ -43,11 +45,13 @@ class CourseLecturesView extends StatelessWidget {
                 children: [
                   Padding(
                     padding: const EdgeInsets.symmetric(
-                      vertical: 20
+                      vertical: 20,
+                      horizontal: 20
                     ),
                     child: LecturesList(
                       instructor: instructor,
                       courseId: courseId,
+                      isViewedByInstructor: isViewedByInstructor,
                     ),
                   ),
                   if (state is PrepareLectureDataLoadingState)

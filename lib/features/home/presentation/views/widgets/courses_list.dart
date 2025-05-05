@@ -34,6 +34,7 @@ class CoursesList extends StatelessWidget {
                 screen: CourseDetailsView(
                   course: course,
                   isSubscribed: false,
+                  isReviewedByInstructor: false,
                 ));
           },
           course: course,

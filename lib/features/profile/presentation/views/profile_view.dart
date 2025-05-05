@@ -89,9 +89,9 @@ class ProfileView extends StatelessWidget {
                         SettingItem(
                           title: 'your_uploaded_courses'.tr,
                           onPressed: () {
-                            if(context.read<UserUploadedCoursesCubit>().userUploadedCourses.isNotEmpty){
+                            // if(context.read<UserUploadedCoursesCubit>().userUploadedCourses.isNotEmpty){
                               context.read<UserUploadedCoursesCubit>().getUserUploadedCourses();
-                            }
+                            // }
                             navigate(
                               context: context,
                               screen: const UserUploadedCoursesView(),

@@ -1,6 +1,9 @@
 // import 'package:e_learning/features/chat/data/repos/chat_repo_imp.dart';
+import 'package:e_learning/core/utils/app_assets.dart';
+import 'package:e_learning/features/chat/presentation/manager/chat_cubit.dart';
 import 'package:e_learning/features/home/data/models/get_courses_response_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import '../../../../../core/methods/navigation.dart';
 import '../../../../../core/scocket_io_services/socket_services.dart';
@@ -35,8 +38,7 @@ class InstructorDetailsItem extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            if (instructor.userProfileImage != null &&
-                instructor.userProfileImage != '')
+             
               Row(
                 children: [
                   Container(
@@ -44,9 +46,10 @@ class InstructorDetailsItem extends StatelessWidget {
                     width: AppDimensions.screenWidth * .2,
                     decoration: BoxDecoration(
                       image: DecorationImage(
-                        image: NetworkImage(
+                        image: (instructor.userProfileImage != null &&
+                        instructor.userProfileImage != '')? NetworkImage(
                           instructor.userProfileImage!,
-                        ),
+                        ) : AssetImage(AppAssets.userImage),
                       ),
                       shape: BoxShape.circle,
                     ),
@@ -68,7 +71,8 @@ class InstructorDetailsItem extends StatelessWidget {
                       instructorImage: instructor.userProfileImage,
                       instructorName: instructor.name,
                     ));
-                ChatRepoImp(SocketService()).getMessagesOfConversation(instructor.instructorId ?? '');
+                context.read<ChatCubit>().getMessages(instructor.instructorId ?? '');
+                // ChatRepoImp(SocketService()).getMessagesOfConversation(instructor.instructorId ?? '');
               },
               icon: Icons.chat_outlined,
             ),

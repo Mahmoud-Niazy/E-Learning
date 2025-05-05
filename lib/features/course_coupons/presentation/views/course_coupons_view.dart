@@ -32,7 +32,10 @@ class CourseCouponsView extends StatelessWidget {
             return EmptyListWidget();
           }
           return Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.symmetric(
+              horizontal: 28,
+              vertical: 10
+            ),
             child: ListView.separated(
               itemBuilder: (context, index) {
                 return CouponItem(

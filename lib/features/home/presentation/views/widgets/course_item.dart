@@ -23,6 +23,7 @@ class CourseItem extends StatelessWidget {
   Widget build(BuildContext context) {
     var screenHeight = AppDimensions.screenHeight;
     var screenWidth = AppDimensions.screenWidth;
+    print(course.id);
     return InkWell(
         onTap: onPressed,
     child: Container(

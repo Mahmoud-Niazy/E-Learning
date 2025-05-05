@@ -98,91 +98,96 @@ class AddLectureView extends StatelessWidget {
       ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
+          padding: const EdgeInsets.only(top: 20, left: 25, right: 25),
           child: SingleChildScrollView(
             child: Form(
               key: formKey,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'lecture_title'.tr,
-                    style: AppStyles.style17,
-                  ),
-                  SizedBox(
-                    height: screenSize.height * .01,
-                  ),
-                  CustomTextFormField(
-                    title: 'lecture_title'.tr,
-                    controller: cubit.lectureTitleController,
-                  ),
-                  SizedBox(
-                    height: screenSize.height * .02,
-                  ),
-                  Text(
-                    'lecture_description'.tr,
-                    style: AppStyles.style17,
-                  ),
-                  SizedBox(
-                    height: screenSize.height * .01,
-                  ),
-                  CustomTextFormField(
-                    maxLine: 7,
-                    title: 'lecture_description'.tr,
-                    keyboardType: TextInputType.multiline,
-                    controller: cubit.lectureDescriptionController,
-                  ),
-                  SizedBox(
-                    height: screenSize.height * .04,
-                  ),
-                  AddLectureImageSec(isEdit: isEdit),
-                  SizedBox(
-                    height: screenSize.height * .04,
-                  ),
-                  SelectLectureVideoSec(),
-                  SizedBox(
-                    height: screenSize.height * .04,
-                  ),
-                  BlocConsumer<AddNewLectureCubit, AddNewLectureStates>(
-                    listener: (context, state) async {
-                      if (state is AddNewLectureSuccessfullyState) {
-                        showSnackBar(
-                          context: context,
-                          label: 'success'.tr,
-                          color: AppConstance.primaryColor,
-                        );
-                        navigate(context: context, screen: LayoutView());
-                      }
-                      if (state is AddNewLectureErrorState) {
-                        showSnackBar(
-                          context: context,
-                          label: CacheHelper.isAr != false
-                              ? await translateEnglishToArabic(state.error)
-                              : state.error,
-                          color: Colors.red,
-                        );
-                      }
-                    },
-                    builder: (context, state) {
-                      if (state is AddNewLectureLoadingState) {
-                        return const CustomCircularProgressIndicator();
-                      }
-                      return CustomButton(
-                        backgroundColor: AppConstance.primaryColor,
-                        title: isEdit ? 'edit_lecture_data'.tr : 'add_lecture'.tr,
-                        onPressed: () {
-                          validate(
-                            cubit: cubit,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 15,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'lecture_title'.tr,
+                      style: AppStyles.style17,
+                    ),
+                    SizedBox(
+                      height: screenSize.height * .01,
+                    ),
+                    CustomTextFormField(
+                      title: 'lecture_title'.tr,
+                      controller: cubit.lectureTitleController,
+                    ),
+                    SizedBox(
+                      height: screenSize.height * .02,
+                    ),
+                    Text(
+                      'lecture_description'.tr,
+                      style: AppStyles.style17,
+                    ),
+                    SizedBox(
+                      height: screenSize.height * .01,
+                    ),
+                    CustomTextFormField(
+                      maxLine: 7,
+                      title: 'lecture_description'.tr,
+                      keyboardType: TextInputType.multiline,
+                      controller: cubit.lectureDescriptionController,
+                    ),
+                    SizedBox(
+                      height: screenSize.height * .04,
+                    ),
+                    AddLectureImageSec(isEdit: isEdit),
+                    SizedBox(
+                      height: screenSize.height * .04,
+                    ),
+                    SelectLectureVideoSec(),
+                    SizedBox(
+                      height: screenSize.height * .04,
+                    ),
+                    BlocConsumer<AddNewLectureCubit, AddNewLectureStates>(
+                      listener: (context, state) async {
+                        if (state is AddNewLectureSuccessfullyState) {
+                          showSnackBar(
                             context: context,
+                            label: 'success'.tr,
+                            color: AppConstance.primaryColor,
                           );
-                        },
-                      );
-                    },
-                  ),
-                  SizedBox(
-                    height: screenSize.height * .08,
-                  ),
-                ],
+                          navigate(context: context, screen: LayoutView());
+                        }
+                        if (state is AddNewLectureErrorState) {
+                          showSnackBar(
+                            context: context,
+                            label: CacheHelper.isAr != false
+                                ? await translateEnglishToArabic(state.error)
+                                : state.error,
+                            color: Colors.red,
+                          );
+                        }
+                      },
+                      builder: (context, state) {
+                        if (state is AddNewLectureLoadingState) {
+                          return const CustomCircularProgressIndicator();
+                        }
+                        return CustomButton(
+                          backgroundColor: AppConstance.primaryColor,
+                          title: isEdit ? 'edit_lecture_data'.tr : 'add_lecture'.tr,
+                          onPressed: () {
+                            validate(
+                              cubit: cubit,
+                              context: context,
+                            );
+                          },
+                        );
+                      },
+                    ),
+                    SizedBox(
+                      height: screenSize.height * .08,
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

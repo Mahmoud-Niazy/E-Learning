@@ -59,7 +59,10 @@ class CreateCouponView extends StatelessWidget {
               children: [
                 SingleChildScrollView(
                   child: Padding(
-                    padding: const EdgeInsets.all(20),
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 20,
+                      horizontal: 28
+                    ),
                     child: Form(
                       key: formKey,
                       child: Column(

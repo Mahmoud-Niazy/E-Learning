@@ -1,4 +1,5 @@
 import 'package:e_learning/core/service_locator/service_locator.dart';
+import 'package:e_learning/core/utils/app_constance.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:video_player/video_player.dart';
@@ -153,8 +154,8 @@ class _VideoPlayerOverlay extends StatelessWidget {
                 VideoProgressIndicator(
                   state.controller,
                   allowScrubbing: true,
-                  colors: const VideoProgressColors(
-                    playedColor: Colors.red,
+                  colors:  VideoProgressColors(
+                    playedColor: AppConstance.primaryColor,
                     bufferedColor: Colors.grey,
                     backgroundColor: Colors.white24,
                   ),

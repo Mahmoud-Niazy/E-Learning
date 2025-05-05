@@ -40,7 +40,10 @@ class NotificationScreen extends StatelessWidget {
             return EmptyListWidget();
           }
           return ListView.builder(
-            padding: EdgeInsets.all(16),
+            padding: EdgeInsets.symmetric(
+              vertical: 20,
+              horizontal: 30,
+            ),
             itemCount: cubit.notifications.length,
             itemBuilder: (context, index) {
               final notification = cubit.notifications[index];

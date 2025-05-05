@@ -1,41 +1,29 @@
 <p align="center">
-  <img src="assets/images/mainLogo.png" alt="App Logo">
+  <img src="assets/images/mainLogo.png" alt="App Logo" width="100">
 </p>
 
-E-Learning App
-
-Welcome to the E-Learning App! Whether you're looking to learn something new or teach others, this app is the perfect place for you. Students can browse, buy, and enjoy courses, while instructors can share their knowledge and earn money. It’s a fun, easy, and interactive way to learn and grow.
-
-Key Features
+App Features
 
 For Students:
 
-- Buy and Learn: Find the courses that interest you and start learning right away.
-
-- Add Notes: You can take personal notes on any lecture to help you remember important points.
-
-- Chat with Instructors: Have a question? Chat with your instructor directly for more clarity.
-
-- Notifications: Get alerts for updates, new content, or messages.
-
-- Favorite Courses: Save your favorite courses so you can easily revisit them later.
-
-- Search: Looking for something specific? Our search feature makes it easy to find the course you're looking for.
+- Browse and purchase educational courses with ease
+- Watch lectures and receive notifications when new lectures are added
+- Add time-specific notes to lectures and revisit them with a single click
+- Save favorite courses for quick access
+- Quickly search for courses
+- Directly chat with instructors through the built-in chat feature
 
 For Instructors:
 
-- Create and Share: Add your own courses and lectures, and help students learn.
+- Add educational courses with introductory videos
+- Edit lecture or course details at any time
+- Receive instant notifications when a course is purchased
+- Create and manage discount coupons for their courses
 
-- Earn Money: Get paid when students buy your courses.
+Technologies Used
 
-- Chat with Students: Engage with students to answer questions and support their learning journey.
-
-- Account Management:
-
-Sign up or log in using your email or Google account.
-
-Forgot your password? No worries, we’ve got a simple recovery process.
-
-Language Support:
-
-Choose from English or Arabic to navigate the app in your preferred language.
+- Socket.io for real-time chat and notifications
+- Stripe for secure payment integration
+- Bloc for efficient state management
+- flutter_dotenv to secure sensitive keys
+- GetX for localization (supports Arabic and English)

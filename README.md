@@ -3,9 +3,7 @@
 </p>
 
 <p align="center">
-  <video width="600" controls>
-    <source src="assets/presentation.mp4" type="video/mp4">
-  </video>
+  <a href="assets/presentation.mp4" target="_blank">🎬 Watch Demo Video</a>
 </p>
 
 App Features

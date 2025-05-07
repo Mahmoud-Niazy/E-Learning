@@ -1,5 +1,6 @@
 import 'package:e_learning/core/utils/app_styles.dart';
 import 'package:e_learning/core/widgets/custom_circular_progress_indicator.dart';
+import 'package:e_learning/core/widgets/custom_divider.dart';
 import 'package:e_learning/core/widgets/empty_list_widget.dart';
 import 'package:e_learning/features/add_new_course/presentation/manager/add_new_course_cubit.dart';
 import 'package:e_learning/features/add_new_course/presentation/manager/add_new_course_states.dart';
@@ -47,14 +48,7 @@ class UserUploadedCoursesView extends StatelessWidget {
                         );
                       },
                       separatorBuilder: (context, index) {
-                        return Padding(
-                          padding: const EdgeInsets.only(
-                            bottom: 15
-                          ),
-                          child: Divider(
-                            color: Colors.black26,
-                          ),
-                        );
+                        return CustomDivider();
                       },
                       itemCount: cubit.userUploadedCourses.length,
                     ),

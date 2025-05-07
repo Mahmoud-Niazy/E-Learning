@@ -1,5 +1,6 @@
 import 'package:e_learning/core/utils/app_styles.dart';
 import 'package:e_learning/core/widgets/custom_circular_progress_indicator.dart';
+import 'package:e_learning/core/widgets/custom_divider.dart';
 import 'package:e_learning/core/widgets/empty_list_widget.dart';
 import 'package:e_learning/features/chat/presentation/manager/chat_cubit.dart';
 import 'package:e_learning/features/chat/presentation/manager/chat_states.dart';
@@ -42,15 +43,7 @@ class AllChatsView extends StatelessWidget {
                 );
               },
               separatorBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 30,
-                    vertical: 10,
-                  ),
-                  child: Divider(
-                    color: Colors.black12,
-                  ),
-                );
+                return CustomDivider();
               },
               itemCount: cubit.conversations.length,
             );

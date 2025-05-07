@@ -12,6 +12,7 @@ import 'package:e_learning/features/notifications/presentation/manager/notificat
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import '../../../../core/widgets/custom_icon.dart';
 import '../../../notifications/presentation/views/notifications_view.dart';
 import '../manager/home_cubit/home_states.dart';
 
@@ -68,10 +69,8 @@ class HomeView extends StatelessWidget {
                                     return Stack(
                                       alignment: Alignment.topRight,
                                       children: [
-                                        Icon(
-                                          Icons.notifications_none,
-                                          color: Colors.black38,
-                                          size: 25,
+                                        CustomIcon(
+                                        Icons.notifications_none,
                                         ),
                                         if(state is GetAllNotificationsSuccessState)
                                         if(context.read<NotificationsCubit>().notifications.isNotEmpty)

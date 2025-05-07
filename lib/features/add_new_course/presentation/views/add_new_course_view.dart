@@ -85,7 +85,9 @@ class AddNewCourseView extends StatelessWidget {
             children: [
               TextSpan(
                 text: '${"welcome".tr}, ',
-                style: AppStyles.style20.copyWith(color: Colors.black),
+                style: AppStyles.style20.copyWith(
+                  color: CacheHelper.isDarkMode ? Colors.white : Colors.black,
+                ),
               ),
               TextSpan(
                 text: context.read<HomeCubit>().user!.name,

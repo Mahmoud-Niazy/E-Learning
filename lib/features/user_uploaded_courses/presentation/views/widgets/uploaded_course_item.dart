@@ -1,5 +1,7 @@
+import 'package:e_learning/core/cache_helper/cache_helper.dart';
 import 'package:e_learning/core/methods/navigation.dart';
 import 'package:e_learning/core/utils/app_assets.dart';
+import 'package:e_learning/core/utils/app_constance.dart';
 import 'package:e_learning/core/widgets/custom_icon_button.dart';
 import 'package:e_learning/core/widgets/custom_text_button.dart';
 import 'package:e_learning/features/add_lecture_to_course/presentation/manager/add_new_lecture_cubit.dart';
@@ -29,14 +31,13 @@ class UploadedCourseItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // print(course.id);
     var screenHeight = AppDimensions.screenHeight;
     var screenWidth = AppDimensions.screenWidth;
     return InkWell(
       onTap: onPressed,
       child: Container(
         width: screenWidth * .8,
-        decoration: BoxDecoration(color: Colors.white),
+        decoration: BoxDecoration(color: CacheHelper.isDarkMode ? AppConstance.darkModeThemeColor:Colors.white),
         child: Column(
           children: [
             SizedBox(

@@ -1,3 +1,4 @@
+import 'package:e_learning/core/cache_helper/cache_helper.dart';
 import 'package:e_learning/core/utils/app_constance.dart';
 import 'package:e_learning/features/home/data/models/category_model.dart';
 import 'package:flutter/material.dart';
@@ -21,9 +22,9 @@ class CategoryItem extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
         border: Border.all(
-          color:  isSelected ? Colors.white : Colors.black38,
+          color: CacheHelper.isDarkMode ? Colors.white : isSelected ? Colors.white : Colors.black38,
         ),
-        color: isSelected ? AppConstance.primaryColor : Colors.white,
+        color: isSelected ? AppConstance.primaryColor : (CacheHelper.isDarkMode ? AppConstance.darkModeThemeColor : Colors.white),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
@@ -40,7 +41,7 @@ class CategoryItem extends StatelessWidget {
           Text(
             category.name,
             style: AppStyles.style13.copyWith(
-              color: isSelected ? Colors.white : Colors.black,
+              color: CacheHelper.isDarkMode ? Colors.white : isSelected ? Colors.white : Colors.black,
             ),
           ),
 

@@ -3,4 +3,5 @@ abstract class AppKeys {
   static String isAr = 'isAr';
   static String customerStripeId = 'customerStripeId';
   static String userId = 'userId';
+  static String isDarkMode = 'isDarkMode';
 }

@@ -19,8 +19,7 @@ class LayoutView extends StatelessWidget {
           body: cubit.screens[cubit.currentIndex],
           bottomNavigationBar: BottomNavigationBar(
             currentIndex: cubit.currentIndex,
-            selectedItemColor: AppConstance.primaryColor,
-            unselectedItemColor: Colors.black26,
+
             onTap: (index) {
               cubit.toggle(index);
             },

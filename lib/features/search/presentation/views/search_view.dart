@@ -1,5 +1,6 @@
 import 'package:e_learning/core/utils/app_assets.dart';
 import 'package:e_learning/core/widgets/custom_circular_progress_indicator.dart';
+import 'package:e_learning/core/widgets/custom_divider.dart';
 import 'package:e_learning/core/widgets/custom_text_form_field.dart';
 import 'package:e_learning/core/widgets/shake_transition.dart';
 import 'package:e_learning/features/home/presentation/views/widgets/course_item.dart';
@@ -57,11 +58,8 @@ class SearchView extends StatelessWidget {
                         seconds: 3 + index
                       ),
                       child: CourseItem(course: searchedCourses[index])
-                      // CourseItem(course: searchedCourses[index]),
                     ),
-                    separatorBuilder: (context, index) => SizedBox(
-                      height: 15,
-                    ),
+                    separatorBuilder: (context, index) => CustomDivider(),
                     itemCount: searchedCourses.length,
                   ),
                 );

@@ -17,7 +17,6 @@ void main() async {
   ServiceLocator.init();
   ApiServices.init();
   await ScreenUtil.ensureScreenSize();
-  print(CacheHelper.token);
   if(CacheHelper.token != null) {
     SocketService().init();
   }

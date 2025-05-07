@@ -1,3 +1,4 @@
+import 'package:e_learning/core/widgets/custom_divider.dart';
 import 'package:e_learning/core/widgets/empty_list_widget.dart';
 import 'package:e_learning/features/course_details/presentation/manager/course_details_cubit/course_details_cubit.dart';
 import 'package:flutter/material.dart';
@@ -42,17 +43,7 @@ class CoursesList extends StatelessWidget {
       },
       itemCount: displayedCourses.length,
       separatorBuilder: (context,index){
-        return Padding(
-          padding: const EdgeInsets.only(
-           bottom: 20,
-            top: 5,
-            left: 20,
-            right: 20
-          ),
-          child: Divider(
-            color: Colors.black12,
-          ),
-        );
+        return CustomDivider();
       },
 
     );

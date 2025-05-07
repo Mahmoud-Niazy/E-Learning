@@ -1,3 +1,4 @@
+import 'package:e_learning/core/theme/app_themes.dart';
 import 'package:e_learning/features/chat/presentation/manager/chat_cubit.dart';
 import 'package:e_learning/features/notifications/presentation/manager/notifications_cubit/notifications_cubit.dart';
 import 'package:flutter/material.dart';
@@ -58,13 +59,9 @@ class ELearningApp extends StatelessWidget {
       ],
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          scaffoldBackgroundColor: Colors.white,
-          appBarTheme: const AppBarTheme(
-            color: Colors.white,
-          ),
-          canvasColor: Colors.white,
-        ),
+        theme: AppThemes.lightTheme,
+        darkTheme: AppThemes.darkTheme,
+        themeMode: CacheHelper.isDarkMode ? ThemeMode.dark : ThemeMode.light,
         locale: CacheHelper.isAr == true ? Locale('ar')  : CacheHelper.isAr == false ? Locale('en') : Get.deviceLocale,
         translations: AppLanguages(),
         home: const SplashView(),

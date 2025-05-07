@@ -52,10 +52,9 @@ class AddLectureView extends StatelessWidget {
         );
         return;
       }
-      if(isEdit){
+      if (isEdit) {
         updateLecture(cubit: cubit);
-      }
-      else{
+      } else {
         uploadLecture(
           cubit: cubit,
         );
@@ -65,8 +64,8 @@ class AddLectureView extends StatelessWidget {
 
   Future<void> updateLecture({
     required AddNewLectureCubit cubit,
-  })async{
-    await cubit.updateLecture(courseId , lectureId ?? '');
+  }) async {
+    await cubit.updateLecture(courseId, lectureId ?? '');
   }
 
   Future<void> uploadLecture({
@@ -86,7 +85,9 @@ class AddLectureView extends StatelessWidget {
             children: [
               TextSpan(
                 text: '${"welcome".tr}, ',
-                style: AppStyles.style20.copyWith(color: Colors.black),
+                style: AppStyles.style20.copyWith(
+                  color: CacheHelper.isDarkMode ? Colors.white : Colors.black,
+                ),
               ),
               TextSpan(
                 text: context.read<HomeCubit>().user!.name,
@@ -173,7 +174,9 @@ class AddLectureView extends StatelessWidget {
                         }
                         return CustomButton(
                           backgroundColor: AppConstance.primaryColor,
-                          title: isEdit ? 'edit_lecture_data'.tr : 'add_lecture'.tr,
+                          title: isEdit
+                              ? 'edit_lecture_data'.tr
+                              : 'add_lecture'.tr,
                           onPressed: () {
                             validate(
                               cubit: cubit,

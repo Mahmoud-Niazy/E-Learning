@@ -106,7 +106,7 @@ class ConversationItem extends StatelessWidget {
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: AppStyles.style11.copyWith(
-                          color: Colors.black45,
+                          color:CacheHelper.isDarkMode ? Colors.white : Colors.black45,
                         ),
                       ),
                     ],
@@ -120,7 +120,7 @@ class ConversationItem extends StatelessWidget {
               Text(
                 getMessageTime(),
                 style: AppStyles.style11.copyWith(
-                  color: Colors.black26,
+                  color:CacheHelper.isDarkMode ? Colors.white : Colors.black26,
                 ),
                 overflow: TextOverflow.ellipsis,
                 maxLines: 2,

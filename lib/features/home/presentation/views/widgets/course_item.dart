@@ -1,3 +1,4 @@
+import 'package:e_learning/core/cache_helper/cache_helper.dart';
 import 'package:e_learning/core/utils/app_assets.dart';
 import 'package:e_learning/core/utils/app_constance.dart';
 import 'package:e_learning/core/utils/app_dimensions.dart';
@@ -23,13 +24,12 @@ class CourseItem extends StatelessWidget {
   Widget build(BuildContext context) {
     var screenHeight = AppDimensions.screenHeight;
     var screenWidth = AppDimensions.screenWidth;
-    print(course.id);
     return InkWell(
         onTap: onPressed,
     child: Container(
         width: screenWidth  * .8,
         decoration: BoxDecoration(
-          color: Colors.white
+          color: CacheHelper.isDarkMode ? AppConstance.darkModeThemeColor : Colors.white
         ),
         child: Column(
           children: [

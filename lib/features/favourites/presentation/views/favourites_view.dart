@@ -1,4 +1,5 @@
 import 'package:e_learning/core/utils/app_styles.dart';
+import 'package:e_learning/core/widgets/custom_divider.dart';
 import 'package:e_learning/core/widgets/empty_list_widget.dart';
 import 'package:e_learning/features/favourites/presentation/manager/favourites_cubit.dart';
 import 'package:e_learning/features/favourites/presentation/manager/favourites_states.dart';
@@ -35,9 +36,7 @@ class FavouritesView extends StatelessWidget {
                 return CourseItem(course: allFavourites[index]);
               },
               separatorBuilder: (context, index) {
-                return SizedBox(
-                  height: 15,
-                );
+                return CustomDivider();
               },
               itemCount: allFavourites.length,
             ),

@@ -57,6 +57,7 @@ import 'package:e_learning/features/notifications/presentation/manager/notificat
 import 'package:e_learning/features/on_boarding/presentation/manager/page_indicator_cubit/page_indicator_cubit.dart';
 import 'package:e_learning/features/search/domain/repos/search_repo.dart';
 import 'package:e_learning/features/search/presentation/manager/search_cubit.dart';
+import 'package:e_learning/features/theme/presentation/manager/theme_cubit.dart';
 import 'package:e_learning/features/user_uploaded_courses/data/repos/user_uploaded_courses_repo_imp.dart';
 import 'package:e_learning/features/user_uploaded_courses/domain/use_cases/get_user_uploaded_courses_use_case.dart';
 import 'package:e_learning/features/user_uploaded_courses/presentation/manager/uploaded_courses_cubit/user_uploaded_courses_cubit.dart';
@@ -319,6 +320,9 @@ class ServiceLocator {
     );
     serviceLocator.registerFactory<NotificationsCubit>(
           ()=> NotificationsCubit(serviceLocator(),serviceLocator(),serviceLocator(),serviceLocator()),
+    );
+    serviceLocator.registerFactory<ThemeCubit>(
+          ()=> ThemeCubit(),
     );
   }
 }

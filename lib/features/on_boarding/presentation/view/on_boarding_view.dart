@@ -41,7 +41,7 @@ class OnBoardingView extends StatelessWidget {
     return BlocProvider(
       create: (context) => PageIndicatorCubit(),
       child: Scaffold(
-        backgroundColor: Colors.white,
+        // backgroundColor: Colors.white,
         body: Column(
           children: [
             Expanded(

@@ -103,6 +103,6 @@ Map<String, String> arabicLanguage = {
   "has_been_added" : "تمت اضافتها للكورس الذي قمت بشرائه والذي بعنوان",
   "new_purchase" : "عملية شراء جديدة",
   "new_lecture" : "محاضرة جديدة",
-  "notifications" : "الاشعارات"
-
+  "notifications" : "الاشعارات",
+  "dark_mode" : "وضع الظلام"
 };

@@ -1,6 +1,8 @@
 import 'package:e_learning/core/theme/app_themes.dart';
 import 'package:e_learning/features/chat/presentation/manager/chat_cubit.dart';
 import 'package:e_learning/features/notifications/presentation/manager/notifications_cubit/notifications_cubit.dart';
+import 'package:e_learning/features/theme/presentation/manager/theme_cubit.dart';
+import 'package:e_learning/features/theme/presentation/manager/theme_states.dart';
 import 'package:flutter/material.dart';
 import 'package:e_learning/core/utils/app_dimensions.dart';
 import 'package:e_learning/features/add_lecture_to_course/presentation/manager/add_new_lecture_cubit.dart';
@@ -56,8 +58,11 @@ class ELearningApp extends StatelessWidget {
         BlocProvider(create: (context) => serviceLocator<LectureDetailsCubit>()),
         BlocProvider(create: (context) => serviceLocator<ChatCubit>()..receiveRealTimeMessage()),
         BlocProvider(create: (context) => serviceLocator<NotificationsCubit>()..getAllNotifications()..receiveRealTimeNotifications()),
+        BlocProvider(create: (context) => serviceLocator<ThemeCubit>()),
       ],
-      child: GetMaterialApp(
+      child: BlocBuilder<ThemeCubit, ThemeStates>(
+  builder: (context, state) {
+    return GetMaterialApp(
         debugShowCheckedModeBanner: false,
         theme: AppThemes.lightTheme,
         darkTheme: AppThemes.darkTheme,
@@ -65,7 +70,9 @@ class ELearningApp extends StatelessWidget {
         locale: CacheHelper.isAr == true ? Locale('ar')  : CacheHelper.isAr == false ? Locale('en') : Get.deviceLocale,
         translations: AppLanguages(),
         home: const SplashView(),
-      ),
+      );
+  },
+),
     );
   }
 }

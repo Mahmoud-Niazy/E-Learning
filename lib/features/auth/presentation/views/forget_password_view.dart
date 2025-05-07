@@ -67,7 +67,9 @@ class ForgetPasswordView extends StatelessWidget {
                         Text(
                           'we_will_send_you_a_code'.tr,
                           style:
-                              AppStyles.style13.copyWith(color: Colors.black26),
+                              AppStyles.style13.copyWith(
+                                  color: CacheHelper.isDarkMode ? Colors.grey :Colors.black26
+                              ),
                         ),
                       ],
                     ),

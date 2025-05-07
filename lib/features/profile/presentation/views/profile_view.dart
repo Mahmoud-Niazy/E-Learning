@@ -8,6 +8,7 @@ import 'package:e_learning/features/home/presentation/manager/home_cubit/home_cu
 import 'package:e_learning/features/home/presentation/manager/home_cubit/home_states.dart';
 import 'package:e_learning/features/home/presentation/views/widgets/home_user_image.dart';
 import 'package:e_learning/features/profile/presentation/views/widgets/setting_item.dart';
+import 'package:e_learning/features/theme/presentation/views/select_theme_view.dart';
 import 'package:e_learning/features/user_uploaded_courses/presentation/manager/uploaded_courses_cubit/user_uploaded_courses_cubit.dart';
 import 'package:e_learning/features/user_uploaded_courses/presentation/views/user_uploaded_courses_view.dart';
 import 'package:flutter/material.dart';
@@ -106,7 +107,9 @@ class ProfileView extends StatelessWidget {
                         ),
                         SettingItem(
                           title: 'mode'.tr,
-                          onPressed: () {},
+                          onPressed: () {
+                            navigate(context: context, screen: SelectThemeView());
+                          },
                         ),
                         SettingItem(
                           title: 'contact_us'.tr,

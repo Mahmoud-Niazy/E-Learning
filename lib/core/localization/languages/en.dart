@@ -103,7 +103,6 @@ Map<String,String> englishLanguage = {
   "has_been_added" : "has been added to the course that you purchased, which was titled",
   "new_purchase" : "New Purchase Process",
   "new_lecture" : "New Lecture",
-  "notifications" : "Notifications"
-
-
+  "notifications" : "Notifications",
+  "dark_mode" : "Dark mode"
 };

@@ -24,20 +24,20 @@ class SocketService {
     chatSocket = io.io(
       chatSocketUrl,
       io.OptionBuilder()
-          .setTransports(['websocket']) // required for Flutter
+          .setTransports(['websocket'])
           .setExtraHeaders({
             'authorization': 'Bearer ${CacheHelper.token}'
-          }) // <-- pass token here
+          })
           .disableAutoConnect()
           .build(),
     );
     notificationsSocket = io.io(
       notificationsSocketUrl,
       io.OptionBuilder()
-          .setTransports(['websocket']) // required for Flutter
+          .setTransports(['websocket'])
           .setExtraHeaders({
             'authorization': 'Bearer ${CacheHelper.token}'
-          }) // <-- pass token here
+          })
           .disableAutoConnect()
           .build(),
     );
